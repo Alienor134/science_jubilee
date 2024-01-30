@@ -18,7 +18,7 @@ from functools import wraps
 #from serial.tools import list_ports
 from science_jubilee.tools.Tool import Tool
 from typing import Union
-
+import numpy as np
 
 #TODO: Figure out how to print error messages from the Duet.
 
@@ -101,7 +101,7 @@ class Machine():
     #TODO: Set this up so that a keyboard interrupt leaves the machine in a safe state - ie tool offsets correct. I had an issue 
     #where I keyboard interrupted during pipette tip pickup - tip was picked up but offset was not applied, crashing machine on next move. This should not be possible. 
 
-    LOCALHOST = "192.168.1.2"
+    LOCALHOST = "10.0.3.54"#"192.168.1.2"
 
     def __init__(self,
         port: str = None,
@@ -138,6 +138,8 @@ class Machine():
         self.port = port
         self.baudrate = baudrate
         self.lineEnding = "\n"        # serial stuff
+
+        self.timeout = 100
 
         #HTTP info
         self.address = address
@@ -209,6 +211,10 @@ class Machine():
             self._tool_z_offsets = None
             self._axis_limits = None
 
+            self.x_limit = None
+            self.y_limit = None
+            self.z_limit = None
+            self.safe_fraction = 0.05 #define a smaller space for tests
             # To save time upon connecting, let's just hit the API on the
             # first try for all the @properties we care about.
             self.configured_axes
@@ -393,7 +399,16 @@ class Machine():
             except ValueError as e:
                 print("Error occurred trying to read axis limits on each axis!")
                 raise e
-        # Return the cached value.
+            # Return the cached value.
+            self.x_limits, self.y_limits, self.z_limits = self._axis_limits[0:3]
+            self.axis_safe = np.copy(self.axis_limits)
+            for i in range(len(self.axis_limits)):
+                mini, maxi = self.axis_limits[i]
+                spread = maxi - mini
+                frac = self.safe_fraction*spread #5% of the whole spread
+                self.axis_safe[i][0] += frac
+                self.axis_safe[i][1] -= frac
+    
         return self._axis_limits    
 
 
@@ -438,41 +453,30 @@ class Machine():
         :return: The response message from the machine. If too long, the message might not display in the terminal.
         :rtype: str
         """
-    #    """Send a GCode cmd; return the response"""
-        #TODO: Fix hardcoded stuff in here
-        #TODO: Add serial option for gcode commands from MA
-        #if self.debug or self.simulated:
-            #print(f"sending: {cmd}")
+        """Send GCode over http"""
+        if self.simulated:
+            return None
+        if self.address:
+            response = requests.post(f"http://{self.address}/machine/code", data=f"{cmd}", timeout=self.timeout).text
+        else:
+            raise MachineStateError("Error: no address set!")
+        
+        while self.get_status()['state']['status'] != "idle":
+            time.sleep(0.1)
+        return response
+
+
+    def get_status(self):
 
         if self.simulated:
             return None
-        # Updated to current duet web API. Response needs to be fetched separately and will be ready once the operation is complete on the machine 
-        # we need to watch the 'reply count' and request the new response when it increments
-        old_reply_count = self.session.get(f'http://192.168.1.2/rr_model?key=seqs').json()['result']['reply']
-        buffer_response = self.session.get(f'http://192.168.1.2/rr_gcode?gcode={cmd}')
-        # wait for a response code to be appended
-        #TODO: Implement retry backoff for managing long-running operations to avoid too many requests error. Right now this is handled by the generic exception catch then sleep. Real fix is some sort of backoff for things running longer than a few seconds. 
-        tic = time.time()
-        while True:
-            try:
-                new_reply_count = self.session.get(f'http://192.168.1.2/rr_model?key=seqs').json()['result']['reply']
-                if new_reply_count != old_reply_count:
-                    response = self.session.get(f'http://192.168.1.2/rr_reply').text
-                    break
-                elif time.time() - tic > response_wait:
-                    response = None
-                    break
-            except Exception as e:
-                print('Connection error, sleeping 1 second')
-                time.sleep(2)
-                continue
-
-            time.sleep(0.1)#
-        #TODO: handle this with logging. Also fix so all output goes to logs
-        #if self.debug:
-        #    print(f"received: {response}")
-            #print(json.dumps(r, sort_keys=True, indent=4, separators=(',', ':')))
+        if self.address:
+            response = json.loads(requests.get(f"http://{self.address}/machine/status").text)
+        else:
+            raise MachineStateError("Error: no address set!")
+        
         return response
+
     
     def _set_absolute_positioning(self):
         """Set absolute positioning for all axes except extrusion"""

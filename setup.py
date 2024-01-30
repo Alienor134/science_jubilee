@@ -10,7 +10,7 @@ setuptools.setup(
     author="Machine Agency, Pozzo Research Group",
     author_email="b1air@uw.edu, politim@uw.edu, bgpelkie@uw.edu",
     description="Science with Jubilee",
-    long_description=read('README.md'),
+    #long_description=read('README.md'),
     long_description_content_type="text/markdown",
     url="https://github.com/machineagency/science_jubilee",
     license="MIT",
