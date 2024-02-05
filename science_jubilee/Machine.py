@@ -423,6 +423,19 @@ class Machine():
         response_chunks = self.gcode("M114").split()
         positions = [float(a.split(":")[1]) for a in response_chunks[:3]]
         return positions 
+    
+    @property
+    def position_and_time(self):
+        """Returns the current machine control point in mm.
+        
+        :return: A dictionary of the machine control point in mm. The keys are the axis name, e.g. 'X'
+        :rtype: dict
+        """
+        # Axes are ordered X, Y, Z, U, E, E0, E1, ... En, where E is a copy of E0.
+        response_chunks = self.gcode("M114").split()
+        positions = [float(a.split(":")[1]) for a in response_chunks[:3]]
+        timestamp = time.time()
+        return np.array(positions +  [timestamp])
 
     ##########################################
     #                BED PLATE
@@ -460,9 +473,11 @@ class Machine():
             response = requests.post(f"http://{self.address}/machine/code", data=f"{cmd}", timeout=self.timeout).text
         else:
             raise MachineStateError("Error: no address set!")
-        
+        time.sleep(0.5)
         while self.get_status()['state']['status'] != "idle":
             time.sleep(0.1)
+        
+        #print(self.get_status()['state']['status'])#response
         return response
 
 
