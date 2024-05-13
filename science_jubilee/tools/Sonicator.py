@@ -1,16 +1,10 @@
-import adafruit_mcp4725
-import board
-import busio
-import digitalio
-import json
 import logging
 import serial
 import time
 
-
 from science_jubilee.labware.Labware import Labware, Well, Location
 from science_jubilee.tools.Tool import Tool, requires_active_tool
-from typing import Tuple, Union
+from typing import Tuple, Union, List
 
 
 logger = logging.getLogger(__name__)
@@ -32,11 +26,15 @@ class Sonicator(Tool):
         :type port: str
         """
         super().__init__(index, name)
-        self.tool_offset = self._machine.tool_z_offsets[self.index]
+        assert mode in ['Pico', 'Hat'], \
+            "Error: mode must be either 'Pico' if using a Raspberry Pi Pico microcontroller" \
+                "or 'Hat' if using the custom pcb board hat for a Raspberry Pi SBC."
+
         self.interface_mode = mode # either Raspberry Pi Pico or Raspberry Pi Hat
         if mode == 'Pico':
             assert port is not None, \
                 "Error: port must be specified for serial interface with Pico microcontroller"
+            self._raspberrypi_pico(port)
         elif mode == 'Hat':
             # initialize board pins
             self._raspberrypi_hat()
@@ -44,6 +42,11 @@ class Sonicator(Tool):
 
     def _raspberrypi_hat(self):
         """Initialize the pins used on the Raspberry Pi Hat."""
+
+        import adafruit_mcp4725
+        import board
+        import busio
+        import digitalio
 
         # define DAC pins for I2C communication 
         self.i2c = busio.I2C(board.SCL, board.SDA)
@@ -69,11 +72,9 @@ class Sonicator(Tool):
         :param power: power level to set the sonicator to. Must be between 0.4 and 1.0.
         :type power: float
         """
-        assert 0.4 <= power <= 1.0, \
-            f"Error: power must be between 0.4 and 1.0. Value specified is: {power}"
         if self.interface_mode == 'Pico':
             self.serial_interface.write(f'DAC:{power}\n'.encode('utf-8'))
-            while self.ser.out_waiting > 0: # wait for message to be sent
+            while self.serial_interface.out_waiting > 0: # wait for message to be sent
                 pass
         elif self.interface_mode == 'Hat':
             self.dac.normalized_value = power
@@ -83,7 +84,7 @@ class Sonicator(Tool):
         """Turn on the sonicator."""
         if self.interface_mode == 'Pico':
             self.serial_interface.write(b'SONICATOR_ON\n')
-            while self.ser.out_waiting > 0:
+            while self.serial_interface.out_waiting > 0:
                 pass
         elif self.interface_mode == 'Hat':
             self.sonicator_enable.value = True
@@ -92,7 +93,7 @@ class Sonicator(Tool):
         """Turn off the sonicator."""
         if self.interface_mode == 'Pico':
             self.serial_interface.write(b'SONICATOR_OFF\n')
-            while self.ser.out_waiting > 0:
+            while self.serial_interface.out_waiting > 0:
                 pass
         elif self.interface_mode == 'Hat':
             self.sonicator_enable.value = False
@@ -180,8 +181,9 @@ class Sonicator(Tool):
     @requires_active_tool
     def sonicate_well(self, location:Union[Well, Tuple, Location],
                         plunge_depth: float, sonication_time: float,
-                        power: float, pulse_duty_cycle: float, pulse_interval: float,
-                        verbose:bool = False, *args):
+                        power: float = 0.4, pulse_duty_cycle: float = 0.5,
+                        pulse_interval: float = 1.0, verbose:bool = False,
+                        autoclean : bool = False, *args):
         """Sonicate one well at a specified depth for a given time.
         
         :param location: location of the well to sonicate
@@ -198,6 +200,8 @@ class Sonicator(Tool):
         :type pulse_interval: float, optional
         :param verbose: whether or not to print out the time elapsed, defaults to False
         :type verbose: bool, optional
+        :param autoclean: whether or not to perform the cleaning protocol after sonication, defaults to False
+        :type autoclean: bool, optional
         :param args: if location is of type Tuple, the depth of the well needs to be specified  
         :type args: tuple
         :raises ValueError: if the plunge depth is too deep
@@ -220,11 +224,15 @@ class Sonicator(Tool):
         plunge_height = plate_height - plunge_depth
         # Sanity check that we're not plunging too deep. Plunge depth is relative.
         
+        self.plunge_depth = plunge_depth
+
         if plunge_height < 0:
             raise ValueError("Error: plunge depth is too deep.")
-
         
-        x, y, z  = Labware.__getxyz(location)
+        if autoclean:
+            assert self.cleaning is not None, "Error: cleaning protocol not set."
+
+        x, y, z  = Labware._getxyz(location)
 
         self._machine.safe_z_movement()
         self._machine.move_to(x=x,y=y) # Position over the well at safe z height.
@@ -234,10 +242,53 @@ class Sonicator(Tool):
         print("done!")
         self._machine.safe_z_movement()
    
-   
-   # TODO: Implement autocleaning
-        # if autoclean:
-            # self.cleanining_protocol()
+        if autoclean:
+            self.perform_cleanining_protocol()
  
-    # def cleanining_protocol(self, protocol_config: str, paht:str = None):
 
+    def set_cleaning_protocol(self, wells:List[Well], power:List[float],
+                              time:List[float], plunge_depth :float = None):
+        """Set the cleaning protocol for the sonicator.
+        
+        :param wells: list of wells to clean
+        :type wells: List[Well]
+        :param power: power level to clean at
+        :type power: List[float]
+        :param time: time to clean for
+        :type time: List[float]
+        :param plunge_depth: depth of the sonicator into the well, defaults to None
+        :type plunge_depth: float, optional
+        """
+        assert len(wells) == len(power) == len(time), \
+            "Error: wells, power, and time must be the same length."
+
+        self.cleaning = {'Wells': wells, 'Power': power, 'Time': time, 'Plunge Depth': plunge_depth}
+        print("Cleaning protocol set.")
+
+    def perform_cleanining_protocol(self, plunge_depth :float = None):
+        """ Perform the cleaning protocol on the sonicator.
+
+        :param plunge_depth: depth to plunge the sonicator into the well, defaults to None
+        :type plunge_depth: float, optional
+
+        """
+        wells = self.cleaning['Wells']
+        power = self.cleaning['Power']
+        time = self.cleaning['Time']
+        depth = self.cleaning['Plunge Depth']
+
+        if depth != None:
+            z_depth = depth
+        elif plunge_depth != None:
+            z_depth = plunge_depth
+        elif self.plunge_depth != None and depth == None and plunge_depth == None:
+            z_depth = self.plunge_depth
+        else:
+            assert plunge_depth != None, "Error: plunge depth must be specified."
+
+        for well, power, time in zip(wells, power, time):
+            self.sonicate_well(well, z_depth, time, power, 1, 1.0, verbose=True)
+
+        self._machine.move_to(z=wells[-1].top(30))
+        time.sleep(30)
+        print("Cleaning protocol completed.")

@@ -4,6 +4,7 @@
     "video_endpoint": "video_feed",
     "still_endpoint": "picture",
     "image_folder": "./sample_images",
-    "light": "False",
-    "light_port": ""
+    "focus_height" : 100,
+    "light": "True",
+    "light_pin": "0"
 }

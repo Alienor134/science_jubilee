@@ -4,18 +4,14 @@
 import json
 import os
 import requests # for issuing commands
-from requests.adapters import HTTPAdapter, Retry
-#import serial
+
 import time
 import warnings
-# import curses
-# import pprint
-#from inpromptu import Inpromptu, cli_method
 
-from science_jubilee.decks.Deck import Deck
-from pathlib import Path
 from functools import wraps
-#from serial.tools import list_ports
+from pathlib import Path
+from requests.adapters import HTTPAdapter, Retry
+from science_jubilee.decks.Deck import Deck
 from science_jubilee.tools.Tool import Tool
 from typing import Union
 import numpy as np
@@ -81,10 +77,13 @@ def requires_deck(func):
 def requires_safe_z(func):
     """Decorator used to ensure the deck is at a safe height before performing certain actions.
     """
-    
     def z_check(self, *args, **kwds):
         current_z = float(self.get_position()["Z"])
-        safe_z = self.deck.safe_z
+        if self.deck:
+            safe_z = self.deck.safe_z
+        else:
+            safe_z = 0
+            # warnings.warn(f"No deck configured, safe z height has been set to {safe_z}. Please modify this if needed.")
         if current_z < safe_z:
             self.move_to(z=safe_z + 20)
         return func(self, *args, **kwds)
@@ -336,7 +335,6 @@ class Machine():
         else:
             self._active_tool_index = tool_index
             if tool_index not in self.tools:
-                warnings.warn("Connection initiated with tool equipped. Use reload_tool() after instantiate this tool.")
                 temp_tool = Tool(tool_index, "temp_tool")
                 self.load_tool(temp_tool)
             tool = self.tools[tool_index]["tool"]
@@ -357,15 +355,18 @@ class Machine():
             max_tries = 50
             for i in range(max_tries):
                 response = json.loads(self.gcode('M409 K"tools"'))["result"]
-                if len(response) == 0 :
+                if len(response) == 0:
                     continue
                 else:
                     break               
-            #pprint.pprint(response)
-            self._tool_z_offsets = [] # Create a fresh list.
+
+            self._tool_z_offsets = {} # Create a fresh dictionary.
             for tool_data in response:
+                if tool_data is None:
+                    continue
+                tool_number = tool_data["number"]
                 tool_z_offset = tool_data["offsets"][2] # Pull Z axis
-                self._tool_z_offsets.append(tool_z_offset)
+                self._tool_z_offsets[tool_number] = tool_z_offset
         except ValueError as e:
             print("Error occurred trying to read z offsets of all tools!")
             raise e
@@ -455,17 +456,20 @@ class Machine():
         self.deck = deck
         return deck    
     
-    def gcode(self, cmd: str = "", response_wait: float = 30):
-        """Send a G-Code command to the Machine
+    def gcode(self, cmd: str = "", timeout = None, response_wait :float = 30):
+        """Send a G-Code command to the Machine and return the response.
 
         :param cmd: The G-Code command to send, defaults to ""
         :type cmd: str, optional
-        :param response_wait: The time to wait for a response from the machine, defaults to 30 seconds 
+        :param timeout: The time to wait for a response from the machine, defaults to None
+        :type timeout: float, optional
+        :param response_wait: The time to wait for a response from the machine, defaults to 30
         :type response_wait: float, optional
 
         :return: The response message from the machine. If too long, the message might not display in the terminal.
         :rtype: str
         """
+<<<<<<< HEAD
         """Send GCode over http"""
         if self.simulated:
             return None
@@ -483,13 +487,56 @@ class Machine():
 
     def get_status(self):
 
+=======
+
+        #TODO: Add serial option for gcode commands from MA
+>>>>>>> upstream/main
         if self.simulated:
+            print(f"sending: {cmd}")
             return None
+<<<<<<< HEAD
         if self.address:
             response = json.loads(requests.get(f"http://{self.address}/machine/status").text)
         else:
             raise MachineStateError("Error: no address set!")
         
+=======
+
+        try:
+            # Try sending the command with requests.post
+            response = requests.post(f"http://{self.address}/machine/code", data=f"{cmd}", timeout=timeout).text
+            if 'rejected' in response:
+                raise requests.RequestException
+        except requests.RequestException:
+            # If requests.post fails ( not supported for standalone mode), try sending the command with requests.get
+            try:
+                # Paraphrased from Duet HTTP-requests page:
+                # Client should query `rr_model?key=seqs` and monitor `seqs.reply`. If incremented, the command went through
+                # and the response is available at `rr_reply`.
+                reply_count = self.session.get(f'http://{self.address}/rr_model?key=seqs').json()['result']['reply']
+                buffer_response = self.session.get(f"http://{self.address}/rr_gcode?gcode={cmd}", timeout=timeout)                
+                # wait for a response code to be appended
+                #TODO: Implement retry backoff for managing long-running operations to avoid too many requests error. Right now this is handled by the generic exception catch then sleep. Real fix is some sort of backoff for things running longer than a few seconds. 
+                tic = time.time()
+                while True:
+                    try:
+                        new_reply_count = self.session.get(f'http://{self.address}/rr_model?key=seqs').json()['result']['reply']
+                        if new_reply_count != reply_count:
+                            response = self.session.get(f'http://{self.address}/rr_reply').text
+                            break
+                        elif time.time() - tic > response_wait:
+                            response = None
+                            break
+                    except Exception as e:
+                        print('Connection error, sleeping 1 second')
+                        time.sleep(2)
+                        continue
+
+            except requests.RequestException as e:
+                print(f"Both `requests.post` and `requests.get` requests failed: {e}")
+                response = None
+        #TODO: handle this with logging. Also fix so all output goes to logs
+>>>>>>> upstream/main
         return response
 
     
@@ -626,7 +673,29 @@ class Machine():
             if axis.upper() not in ['X', 'Y', 'Z', 'U']:
                 raise TypeError(f"Error: cannot home unknown axis: {axis}.")
             self.gcode(f"G92 {axis.upper()}0")
-
+            
+    def set_tool_offset(self, tool_idx = None, x = None, y = None, z = None):
+        if tool_idx is None:
+            raise MachineConfigurationError("No tool index provided!")
+            
+        x = "{0:.2f}".format(x) if x is not None else None
+        y = "{0:.2f}".format(y) if y is not None else None
+        z = "{0:.2f}".format(z) if z is not None else None
+        
+        p_cmd = x_cmd = y_cmd = z_cmd = ''
+        
+        if tool_idx is not None:
+            p_cmd = f"P{tool_idx}"
+        if x is not None:
+            x_cmd = f"X{x}"
+        if y is not None:
+            y_cmd = f"Y{y}"
+        if z is not None:
+            z_cmd = f"Z{z}"
+        
+        cmd = f"G10 {p_cmd} {z_cmd} {x_cmd} {y_cmd}"
+        self.gcode(cmd)
+        
     @machine_homed
     def _move_xyzev(self, x: float = None, y: float = None, z: float = None, e: float = None,
                      v: float = None, s: float = 6000, param: str=None , wait: bool = False):
@@ -756,7 +825,6 @@ class Machine():
         else:
             pass
     
-
     def _get_tool_index(self, tool_item: Union[int, Tool, str]):
         """Return the tool index from the provided tool item.
         
@@ -786,17 +854,20 @@ class Machine():
         #TODO: Fix this so if you reload you don't break everything
         name = tool.name
         idx = tool.index
-
+        
         # Ensure that the provided tool index and name are unique.
         if idx in self.tools:
-            raise MachineConfigurationError("Error: Tool index already in use.")
+             # Handle the case that connection was established with a tool equipped
+            if self.tools[idx]['name'] == "temp_tool":
+                tool.is_active_tool = True
         for loaded_tool in self.tools.values():
-            if loaded_tool["name"] is name:
+            if loaded_tool["name"] is name and loaded_tool["tool"].index != idx:
                 raise MachineConfigurationError("Error: Tool name already in use.")
 
         self.tools[idx] = {"name": name, "tool": tool}
         tool._machine = self
         tool.post_load()
+        tool.tool_offset = self.tool_z_offsets[idx]
         
     def reload_tool(self, tool: Tool = None):
         """Update a tool which has already been loaded."""
@@ -863,7 +934,7 @@ class Machine():
     @requires_safe_z
     def park_tool(self):
         """Park the current tool adn cahnges active tool index to `-1`."""
-        self.safe_z_movement()
+        # self.safe_z_movement()
         self.gcode("T-1")
         # Update the cached value to prevent read delays.
         current_tool_index= self.active_tool_index
@@ -927,14 +998,12 @@ class Machine():
     # ***************MACROS***************
     def tool_lock(self):
         """Runs Jubilee tool lock macro. Assumes tool_lock.g macro exists."""
-        macro_file = "0:/macros/tool_lock.g"
-        cmd = f"M98 P{macro_file}"
+        cmd = 'M98 P"0:/macros/tool_lock.g"'
         self.gcode(cmd)
         
     def tool_unlock(self):
         """Runs Jubilee tool unlock macro. Assumes tool_unlock.g macro exists."""
-        macro_file = "0:/macros/tool_unlock.g"
-        cmd = f"M98 P{macro_file}"
+        cmd = 'M98 P"0:/macros/tool_unlock.g"'
         self.gcode(cmd)
 
     def disconnect(self):
