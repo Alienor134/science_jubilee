@@ -6,29 +6,39 @@ import numpy as np
 PS4 Controller Code
 This code allows you to control a machine using a PS4 controller. The code is written in Python and uses the Pygame library for handling the joystick events.
 
-Functions
+# Functions
+3 movement levels for X,Y (different step sizes). Large steps: arrows. Medium steps: left joystick. Small steps: right joystick.
+2 movement levels for Z: L1-R1: large movements, L2-R2 small movements. 
 button_event(event, step = 10): Handles button events for the PS4 controller.
-joystick_event(event, step = 1): Handles joystick events for the PS4 controller.
+
+joystick_event(event, step = 1): Handles joystick events for the PS4 controller. Left joystick has step of size step, right joystick has steps of size step/10. 
 assess_movement_range(m, xPos, yPos, zPos, dx, dy, dz): Assesses the movement range of the machine.
 new_record(filename): Creates a new record file.
 record_pos(m, filename): Records the current position of the machine.
 
 make_PS4_control(m, filename): Main function to initialize the PS4 controller and handle the events.
 
-Control: 
+# Control: 
 PS Button (event.button == 5): When the PS button is pressed, the joystick mode is exited.
 
-O Button (event.button == 1): When the O button is pressed, it unlocks the tool.
-Triangle Button (event.button == 3): When the Triangle button is pressed, it locks the tool.
-X Button (event.button == 0): When the X button is pressed, it records the clear tool position and sets m.y_clear to the current Y position.
-Square Button (event.button == 2): When the Square button is pressed, it records the parked tool position and sets m.x_park and m.y_park to the current X and Y positions respectively.
-Touch Pad Button (event.button == 15): When the Touch Pad button is pressed, it records the current position in a file by calling the record_pos(m, filename).
-
-Other Buttons (event.button == 9, 10, 11, 12, 13, 14): These buttons are used to move the machine along the X, Y, and Z axes. The direction of the movement depend on the button pressed and the magnitude depends on the setp size.
+## Move the toolhead
+Arrows and joysticks (event.button == 9, 10, 11, 12, 13, 14): These buttons are used to move the machine along the X, Y, and Z axes. The direction of the movement depend on the button pressed and the magnitude depends on the setp size.
 Joystick Movements (event.type == pygame.JOYAXISMOTION): The joystick movements are used to move the machine along the X, Y, and Z axes. The direction and magnitude of the movement depend on the joystick’s axis and value.
 
-Usage:
-To use this code, you need to have a machine that can be controlled using a PS4 controller. You also need to have the Pygame library installed in your Python environment.
+## Lock/Unlock tool
+O Button (event.button == 1): When the O button is pressed, it unlocks the tool.
+Triangle Button (event.button == 3): When the Triangle button is pressed, it locks the tool.
+
+## Record positions while setting up a new tool
+X Button (event.button == 0): When the X button is pressed, it records the clear tool position and sets m.y_clear to the current Y position. 
+Square Button (event.button == 2): When the Square button is pressed, it records the parked tool position and sets m.x_park and m.y_park to the current X and Y positions respectively.
+
+## Recording a macro
+Touch Pad Button (event.button == 15): When the Touch Pad button is pressed, it records the current position in a file by calling the record_pos(m, filename).
+
+
+# Usage:
+To use this code, you need to have the Pygame library installed in your Python environment.
 
 Please note that this code is specifically designed for a PS4 controller. If you are using a different joystick, you may need to adjust the button and axis mappings accordingly. You can refer to the Pygame documentation for more information on joystick events.
 """
