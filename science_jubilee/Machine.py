@@ -14,7 +14,7 @@ from requests.adapters import HTTPAdapter, Retry
 from science_jubilee.decks.Deck import Deck
 from science_jubilee.tools.Tool import Tool
 from typing import Union
-import numpy as np
+
 
 #TODO: Figure out how to print error messages from the Duet.
 
@@ -100,7 +100,7 @@ class Machine():
     #TODO: Set this up so that a keyboard interrupt leaves the machine in a safe state - ie tool offsets correct. I had an issue 
     #where I keyboard interrupted during pipette tip pickup - tip was picked up but offset was not applied, crashing machine on next move. This should not be possible. 
 
-    LOCALHOST = "10.0.3.54"#"192.168.1.2"
+    LOCALHOST = "192.168.1.2"
 
     def __init__(self,
         port: str = None,
@@ -137,8 +137,6 @@ class Machine():
         self.port = port
         self.baudrate = baudrate
         self.lineEnding = "\n"        # serial stuff
-
-        self.timeout = 100
 
         #HTTP info
         self.address = address
@@ -210,10 +208,6 @@ class Machine():
             self._tool_z_offsets = None
             self._axis_limits = None
 
-            self.x_limit = None
-            self.y_limit = None
-            self.z_limit = None
-            self.safe_fraction = 0.05 #define a smaller space for tests
             # To save time upon connecting, let's just hit the API on the
             # first try for all the @properties we care about.
             self.configured_axes
@@ -400,16 +394,7 @@ class Machine():
             except ValueError as e:
                 print("Error occurred trying to read axis limits on each axis!")
                 raise e
-            # Return the cached value.
-            self.x_limits, self.y_limits, self.z_limits = self._axis_limits[0:3]
-            self.axis_safe = np.copy(self.axis_limits)
-            for i in range(len(self.axis_limits)):
-                mini, maxi = self.axis_limits[i]
-                spread = maxi - mini
-                frac = self.safe_fraction*spread #5% of the whole spread
-                self.axis_safe[i][0] += frac
-                self.axis_safe[i][1] -= frac
-    
+        # Return the cached value.
         return self._axis_limits    
 
 
@@ -424,19 +409,6 @@ class Machine():
         response_chunks = self.gcode("M114").split()
         positions = [float(a.split(":")[1]) for a in response_chunks[:3]]
         return positions 
-    
-    @property
-    def position_and_time(self):
-        """Returns the current machine control point in mm.
-        
-        :return: A dictionary of the machine control point in mm. The keys are the axis name, e.g. 'X'
-        :rtype: dict
-        """
-        # Axes are ordered X, Y, Z, U, E, E0, E1, ... En, where E is a copy of E0.
-        response_chunks = self.gcode("M114").split()
-        positions = [float(a.split(":")[1]) for a in response_chunks[:3]]
-        timestamp = time.time()
-        return np.array(positions +  [timestamp])
 
     ##########################################
     #                BED PLATE
@@ -469,38 +441,11 @@ class Machine():
         :return: The response message from the machine. If too long, the message might not display in the terminal.
         :rtype: str
         """
-<<<<<<< HEAD
-        """Send GCode over http"""
-        if self.simulated:
-            return None
-        if self.address:
-            response = requests.post(f"http://{self.address}/machine/code", data=f"{cmd}", timeout=self.timeout).text
-        else:
-            raise MachineStateError("Error: no address set!")
-        time.sleep(0.5)
-        while self.get_status()['state']['status'] != "idle":
-            time.sleep(0.1)
-        
-        #print(self.get_status()['state']['status'])#response
-        return response
-
-
-    def get_status(self):
-
-=======
 
         #TODO: Add serial option for gcode commands from MA
->>>>>>> upstream/main
         if self.simulated:
             print(f"sending: {cmd}")
             return None
-<<<<<<< HEAD
-        if self.address:
-            response = json.loads(requests.get(f"http://{self.address}/machine/status").text)
-        else:
-            raise MachineStateError("Error: no address set!")
-        
-=======
 
         try:
             # Try sending the command with requests.post
@@ -536,9 +481,7 @@ class Machine():
                 print(f"Both `requests.post` and `requests.get` requests failed: {e}")
                 response = None
         #TODO: handle this with logging. Also fix so all output goes to logs
->>>>>>> upstream/main
         return response
-
     
     def _set_absolute_positioning(self):
         """Set absolute positioning for all axes except extrusion"""
