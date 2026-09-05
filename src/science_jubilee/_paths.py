@@ -21,11 +21,24 @@ def pipeline_data_dir() -> Path:
 
     Override with the ``JUBILEE_PIPELINE_DATA`` environment variable (useful for
     tests and for wheel installs where the repo root is not writable).
+
+    On first access, creates the directory and seeds ``machine_state.json`` from
+    the bundled default so a fresh install has real tool state to work with.
     """
     import os
+    import shutil
 
     override = os.environ.get("JUBILEE_PIPELINE_DATA")
-    return Path(override) if override else jubilee_dir() / "pipeline_data"
+    d = Path(override) if override else jubilee_dir() / "pipeline_data"
+
+    d.mkdir(parents=True, exist_ok=True)
+    snapshot = d / "machine_state.json"
+    if not snapshot.exists():
+        bundled = Path(__file__).parent / "defaults" / "machine_state.json"
+        if bundled.exists():
+            shutil.copy(bundled, snapshot)
+
+    return d
 
 
 def machine_state_json() -> Path:
