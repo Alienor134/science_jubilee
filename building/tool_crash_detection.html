@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science Jubilee Tool Crash Detection &mdash; Science Jubilee 0.0.post1.dev1+gf2e106aa6.d20260905 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="../_static/logo.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ee6133ab"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building Science Jubilee Tools" href="building_tools.html" />
+    <link rel="prev" title="Z Axis Assembly" href="z_axis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Science Jubilee
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html">Installing science-jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/first_session.html">Your first session</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#mock-session">Mock session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#homing-and-moving">Homing and moving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#picking-up-a-tool">Picking up a tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#navigating-to-a-labware-well">Navigating to a labware well</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#cleanup">Cleanup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/env_files.html">Configuring science-jubilee with .env files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-mock-offline-development"><code class="docutils literal notranslate"><span class="pre">.env.mock</span></code> — offline development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-hardware-connected-machine"><code class="docutils literal notranslate"><span class="pre">.env.hardware</span></code> — connected machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#full-variable-reference">Full variable reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/primer.html">G-code, coordinates, and tool changing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#gcode">GCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#coordinate-system">Coordinate System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#absolute-and-relative-positioning">Absolute and Relative Positioning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#toolchanging">Toolchanging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/new_user_guide.html">End-to-end setup for a new lab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#what-is-jubilee">What is Jubilee?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#where-to-find-help">Where to find help?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware">Hardware:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#software">Software:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#tools">Tools:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#things-to-be-aware-of-if-you-are-new-to-motion-platforms">0. Things to be aware of if you are new to motion platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#assemble-and-configure-the-motion-platform">1. Assemble and configure the motion platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware-assembly">Hardware assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#wiring">Wiring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#board-provisioning-and-initial-connection">Board provisioning and initial connection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#build-and-install-the-tools-you-will-be-using">2. Build and install the tools you will be using</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-pipette">Building the pipette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-camera-tool">Building the camera tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#setting-tool-parking-post-positions-and-offsets">Setting tool parking post positions and offsets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#install-and-calibrate-the-lab-automation-deck-plate">3. Install and calibrate the lab automation deck plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#run-your-first-experiment-script">4. Run your first experiment script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">User Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../users/writing_experiments.html">Writing an experiment script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#freenavigator-jogging-and-setup"><code class="docutils literal notranslate"><span class="pre">FreeNavigator</span></code> — jogging and setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#decknavigator-labware-aware-experiments"><code class="docutils literal notranslate"><span class="pre">DeckNavigator</span></code> — labware-aware experiments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#recording-labelled-steps-in-the-run-report">Recording labelled steps in the run report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#where-deck-definitions-come-from">Where deck definitions come from</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/environment_reference.html">Every environment variable, explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#transport">Transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#experiment-layout">Experiment layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#attached-peripherals">Attached peripherals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#twin-downstream-tools">Twin &amp; downstream tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#resolution-order">Resolution order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/troubleshooting.html">Common errors and how to fix them</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#valueerror-jubilee-address-must-be-set-when-jubilee-transport-hardware"><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">JUBILEE_ADDRESS</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">set</span> <span class="pre">...</span> <span class="pre">when</span> <span class="pre">JUBILEE_TRANSPORT=hardware</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-session-hangs-for-15-s-on-startup">The session hangs for ~15 s on startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#mock-mode-uses-a-stale-tool-table">Mock mode uses a stale tool table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#import-fails-with-modulenotfounderror-no-module-named-neopixel-or-similar">Import fails with <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'neopixel'</span></code> (or similar)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-trace-html-doesnt-appear">The trace HTML doesn’t appear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-digital-twin-cant-find-my-tool">The digital twin can’t find my tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-build-fails-with-relative-import-with-too-many-levels-1-for-module-http">The build fails with <code class="docutils literal notranslate"><span class="pre">Relative</span> <span class="pre">import</span> <span class="pre">with</span> <span class="pre">too</span> <span class="pre">many</span> <span class="pre">levels</span> <span class="pre">(1)</span> <span class="pre">for</span> <span class="pre">module</span> <span class="pre">'http'</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Build Guides</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="building_a_jubilee.html">Science Jubilee Build Instructions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#recommended-upgrades">Recommended upgrades</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#tools">Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#to-buy">To Buy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#already-included-in-kit">Already included in kit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="building_a_jubilee.html#assembly-instructions">Assembly Instructions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heatset_inserts.html">Heatset Insert Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corner_brackets.html">Inside Corner Bracket Prep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="outer_frame.html">Outer Frame Assembly and Alignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motor_plate.html">Aluminum Motor Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corner_plate.html">Double Pulley Corner Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crossbar.html">Aluminum Crossbar Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="REL.html">Toolchanger Remote Elastic Lock Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolchanger_carriage.html">Toolchanger Carriage Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_plate.html">Magnetic Build Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="panel.html">Duet Electronics Panel Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lower_frame.html">Lower Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corexy.html">CoreXY Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="z_axis.html">Z Axis Assembly</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Science Jubilee Tool Crash Detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#videos">Videos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#additional-jubilee-resources">Additional Jubilee Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#footnotes">Footnotes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building_tools.html">Building Science Jubilee Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-prerequisites">Tool Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#parking-post">Parking Post</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#tool-wings">Tool Wings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#tool-plate">Tool Plate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#fabricating-a-tool">Fabricating a Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#cable-management">Cable Management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-gallery">Tool Gallery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#pipette-tool">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#inoculation-loop-tool">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#top-down-camera-tool">Top-Down Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#side-camera-tool">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#syringe-tool">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#lab-automation-deck">Lab Automation Deck</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#designing-custom-tools">Designing Custom Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-postrequisites">Tool Postrequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pipette_tool.html">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inoculation_tool.html">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="top_down_camera_tool.html">Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="side_camera_tool.html">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="syringe_tool.html">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_syringe.html">Digital Pipette HTTP Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lab_automation_deck.html">Lab Automation Deck</a></li>
+<li class="toctree-l4"><a class="reference internal" href="designing_custom_tools.html">Designing Custom Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_postreqs.html">Tool Postrequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jubilee_travel.html">Traveling with Jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#export-control">Export Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#customs">Customs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jubilee_travel.html#packing-and-transport">Packing and transport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#products">Products</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="jubilee_travel.html#jubilee-in-assembled-state-untested">Jubilee in assembled state (untested)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="jubilee_travel.html#jubilee-in-height-reduced-state">Jubilee in height-reduced state</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../new_tool/index.html">Design a new tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-1-hardware">Step 1 — Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-2-scaffold-the-plugin">Step 2 — Scaffold the plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-3-naming-the-tool-key">Step 3 — Naming: the <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-4-repo-layout">Step 4 — Repo layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-5-entry-points">Step 5 — Entry points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-6-the-tool-subclass">Step 6 — The <code class="docutils literal notranslate"><span class="pre">Tool</span></code> subclass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-7-duet-firmware-setup-per-machine-not-per-plugin">Step 7 — Duet firmware setup (per-machine, not per-plugin)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-8-calibrate-on-the-machine">Step 8 — Calibrate on the machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-9-digital-twin-blend-asset">Step 9 — Digital-twin <code class="docutils literal notranslate"><span class="pre">.blend</span></code> asset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#reference-implementations">Reference implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_code.html">Code Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#issues">Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#working-on-the-science-jubilee-codebase">Working on the <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code> Codebase</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#forking-the-codebase">Forking the Codebase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#git-workflow">Git Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_docs.html">Documentation Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_docs.html#documentation-overview">Documentation Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#building-the-docs">Building the Docs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-new-pages">Adding New Pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-inline-documentation">Adding Inline Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-notebooks">Adding Notebooks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/plugins.html">Choosing the right plugin type</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#decision-tree">Decision tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#the-common-pattern">The common pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#which-entry-points-does-core-actually-consume">Which entry points does core actually consume?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#naming-rules">Naming rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#version-discipline">Version discipline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#what-lives-where">What lives where</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/labware_plugin.html">Labware plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#required-entry-points">Required entry points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#naming-convention">Naming convention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/deck_plugin.html">Deck plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#required-entry-point">Required entry point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#deck-json-schema-summary">Deck JSON schema (summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/digital_twin_plugin.html">Digital-twin plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#three-levels">Three levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#file-tree-level-3">File tree (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#required-entry-point-level-3">Required entry point (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/entry_points.html">Plugin discovery (entry points)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#table">Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#names-within-each-group">Names within each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#ecosystem-publishers-today">Ecosystem publishers today</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#adding-your-own">Adding your own</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/machine_state.html">Machine state and snapshots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#signature">Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#fallback-chain">Fallback chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#the-snapshot-machine-json">The snapshot: <code class="docutils literal notranslate"><span class="pre">machine.json</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#pipeline-data-layout">Pipeline data layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#reading-it-yourself">Reading it yourself</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/trace.html">Session trace (HTML recap)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#where-it-lives">Where it lives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#whats-in-a-trace">What’s in a trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#standard-sections-written-by-science-jubilee">Standard sections written by <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#adding-to-a-trace-from-user-code">Adding to a trace from user code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#log-capture">Log capture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#threading">Threading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Science Jubilee</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Build Guides</a></li>
+          <li class="breadcrumb-item"><a href="building_a_jubilee.html">Science Jubilee Build Instructions</a></li>
+      <li class="breadcrumb-item active">Science Jubilee Tool Crash Detection</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/building/tool_crash_detection.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="z_axis.html" class="btn btn-neutral float-left" title="Z Axis Assembly" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="building_tools.html" class="btn btn-neutral float-right" title="Building Science Jubilee Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="science-jubilee-tool-crash-detection">
+<span id="crash-detection"></span><h1>Science Jubilee Tool Crash Detection<a class="headerlink" href="#science-jubilee-tool-crash-detection" title="Link to this heading"></a></h1>
+<p>A Jubilee crash is an unwanted collision between the current tool or toolchanger carriage and the bed plate or labware on the deck. You will (almost certainly) crash your Jubilee. This can happen when you click the wrong button in the duet web control interface while aligning samples, forget to remove labware from the deck before homing or improperly align your labware, to name a few examples. Depending on the context in which it occurs, a crash can range from a minor annoyance requiring a machine re-start, through an expensive mistake causing thousands of dollars of damage, up to a serious safety incident involving spilled chemicals or crush injuries. When using Jubilee in a scientific setting, crash detection is highly desireable. We see three theoretically possible options for detecting crashes: 1) tool ball contact sensor trigger, 2) stepper motor stall guard, and 3) computer vision based incident detection. We have implemented  option 1 and reccomend new Jubile users do as as well. The other two are described here for completeness, but we have not gotten them working.</p>
+<section id="tool-ball-contact-sensor-crash-detection">
+<h2>Tool ball contact sensor crash detection<a class="headerlink" href="#tool-ball-contact-sensor-crash-detection" title="Link to this heading"></a></h2>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/IgjtlrmePy0" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>This approach uses the contact between the tool balls and the kinematic coupling pins as a switch. The idea is that meaningful force applied to the tool will twist at least one of the tool balls out of it’s seat with the tool changer pins. This will break the circuit and trip a trigger set up in the Duet firmware. We are in the early phases of testing this solution. So far, it provides reliable crash detection for collisions in the X, Y, and Z directions. There is a possibility for false positives, which seems to be reduced by increasing the torque on the tool changer locking pin. Implementing this requires electrically connecting the toolchanger interface dowel pins and modifying your machine configuration. We have not tested this implementation with the pipette tool or other tools that need to exert force on the deck to operate.</p>
+<section id="implementing-tool-ball-contact-sensor">
+<h3>Implementing tool ball contact sensor<a class="headerlink" href="#implementing-tool-ball-contact-sensor" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is in early development. You may run into unexpected issues.</p>
+</div>
+<section id="parts-required">
+<h4>Parts required:<a class="headerlink" href="#parts-required" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Jubilee <a class="reference external" href="https://github.com/machineagency/jubilee/blob/main/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchange_carriage/carriage_coupler_plate.STL">carriage coupler plate </a> printed part. Follow the main <a class="reference external" href="https://jubilee3d.com/index.php?title=3D_Printed_Parts#Default_Print_Settings">Jubilee printing instructions.</a></p></li>
+<li><p>Threaded dowel pins, M3x4mmx20mm. You need 6 of these per Jubilee We use <a class="reference external" href="https://www.aliexpress.us/item/3256805293246699.html">these ones</a>.</p></li>
+<li><p>M3x4mm buttonhead screws, quantity 6</p></li>
+<li><p><a class="reference external" href="https://www.digikey.com/en/products/detail/keystone-electronics/7328/316697?s=N4IgTCBcDaIMwDYC0B2OYAcSByAREAugL5A">M3 solder lug</a>, quantity 6. These are the same part used in the toolchanger REL mechanism so you might have some spares.</p></li>
+<li><p>Hookup wire, 22 or 24 gauge</p></li>
+<li><p>Contacts and housing for 5-pin molex connector (for Duet IO ports)</p></li>
+</ol>
+</section>
+<section id="tools-required">
+<h4>Tools required:<a class="headerlink" href="#tools-required" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Arbor press or other means of inserting dowel pins</p></li>
+<li><p><a class="reference external" href="https://github.com/machineagency/jubilee/blob/main/tools/assembly_fixtures/coupling_plate_pin_insertion_fixture.STL">Tool carriage pin insertion fixture</a> (print)</p></li>
+<li><p>Soldering station (soldering iron, solder, etc)</p></li>
+<li><p>Wire crimping tool (ex <a class="reference external" href="https://www.amazon.com/ENGINEER-AWG32-AWG20-Connectors-Oil-Resistant-PA-09/dp/B002AVVO7K?th=1">Engineer PA-09</a>)</p></li>
+<li><p>Wire strippers</p></li>
+<li><p>Assorted hex drivers</p></li>
+</ol>
+</section>
+<section id="assembly-instructions">
+<h4>Assembly Instructions<a class="headerlink" href="#assembly-instructions" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Perform some quality control on you dowel pins. Make sure your M3 screws thread in nicely.</p></li>
+<li><p><a class="reference internal" href="toolchanger_carriage.html#coupling-plate-assembly"><span class="std std-ref">Press the dowel pins into the carriage coupler plate</span></a>. Make sure the threaded end of the dowel pin is facing out!</p></li>
+<li><p>Screw the solder lugs into the dowel pins with the M3 screws. Align the tabs facing ‘backwards’, away from the dowel pin side of the carriage plate.</p></li>
+<li><p>Solder the lugs together, using the pattern shown. Use lengths of wire that are as short as possible for the inter-lug connections. Right now the wires just float loosely. Somebody should modify the carriage plate so the wires can be neatly recessed. That could be you!</p></li>
+</ol>
+<p><img alt="image" src="../_images/tool_plate_wiring.png" /></p>
+<p>Wired lugs will look like this:</p>
+<p><img alt="image" src="../_images/solder_lugs_wired.jpg" /></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>From</p></th>
+<th class="head"><p>To</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Duet board</p></td>
+<td><p>Pin 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pin 2</p></td>
+<td><p>Pin 3</p></td>
+</tr>
+<tr class="row-even"><td><p>Pin 4</p></td>
+<td><p>Pin 5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pin 6</p></td>
+<td><p>Duet board</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="5">
+<li><p>Terminate the duet end of the wiring with molex terminals. Place the terminals in the 2 and 3 positions of the housing.</p></li>
+<li><p><a class="reference internal" href="corexy.html#front-carriage-assembly"><span class="std std-ref">Install the carriage plate on your toolchanger carriage.</span></a>. Your installed plate will look something like this.</p></li>
+</ol>
+<p><img alt="image" src="../_images/tool_plate_wired_installed.jpg" /></p>
+<ol class="arabic simple" start="7">
+<li><p>Route the duet wires along the rest of the toolchanger wiring bundle back to your duet board</p></li>
+<li><p>Plug the connector into an open IO port. We use io_3 in these instructions but any will do.</p></li>
+</ol>
+</section>
+<section id="configuration-instructions">
+<h4>Configuration instructions<a class="headerlink" href="#configuration-instructions" title="Link to this heading"></a></h4>
+<p>We will be configuring the tool ball switch as a Duet trigger. With a trigger activated, your duet will watch for a change in state on an external switch. When a change is detected, the defined action will be run. Here we will be using the trigger as an emergency stop. This will disable the steppers immediately and reset the board, the same as running the <a class="reference external" href="https://docs.duet3d.com/User_manual/Reference/Gcodes#m112-emergency-stop">M112 gcode</a>. You can read more on duet triggers <a class="reference external" href="https://docs.duet3d.com/User_manual/Tuning/Triggers">here</a>. We want our trigger to be active while a tool is in use, but we need to de-activate it whenever we park a tool, otherwise our machine will shut off when we do so. To accomplish this, we will define triggers in every tool pick-up macro and disable them before the tool is parked.</p>
+<ol class="arabic simple">
+<li><p>Add this line to your <code class="docutils literal notranslate"><span class="pre">sys/config.g</span></code> file. This will define your tool ball switch on the input that you are using. Change the input number to the connector that you plugged your wiring into.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M950</span> <span class="n">J0</span> <span class="n">C</span><span class="s2">"^0.io3.in"</span> <span class="p">;</span><span class="n">define</span> <span class="nb">input</span> <span class="mi">0</span> <span class="p">(</span><span class="n">J0</span><span class="p">)</span> <span class="n">on</span> <span class="n">connector</span> <span class="n">board</span> <span class="mi">0</span><span class="p">,</span> <span class="n">io3</span><span class="p">,</span> <span class="ow">in</span> <span class="n">pin</span><span class="p">,</span> <span class="k">with</span> <span class="n">pullup</span>
+</pre></div>
+</div>
+<p>Steps 2 and 3 will need to be done for every tool you want the crash detection to be active for.</p>
+<ol class="arabic simple" start="2">
+<li><p>Add the following lines to the end of the <code class="docutils literal notranslate"><span class="pre">tpost{n}.g</span></code> file of the tool you want to activate. Read more on the <code class="docutils literal notranslate"><span class="pre">M581</span></code> trigger gcode and it’s parameters <a class="reference external" href="https://docs.duet3d.com/User_manual/Reference/Gcodes#m581-configure-external-trigger">here</a></p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M400</span><span class="p">;</span> <span class="n">clears</span> <span class="n">buffer</span> <span class="n">of</span> <span class="n">moves</span> <span class="n">before</span> <span class="n">proceeding</span><span class="o">.</span>
+<span class="n">M117</span> <span class="s2">"initializing triggering on tool </span><span class="si">{n}</span><span class="s2">"</span> <span class="p">;</span> <span class="n">Debug</span> <span class="nb">print</span> <span class="n">statement</span><span class="p">,</span> <span class="n">remove</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span>
+<span class="n">M581</span> <span class="n">P0</span> <span class="n">T0</span> <span class="n">S1</span> <span class="n">R0</span> <span class="p">;</span> <span class="nb">set</span> <span class="n">up</span> <span class="n">triggering</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add the following line to your <code class="docutils literal notranslate"><span class="pre">tfree{n}.g</span></code> file for your tool, immediately before the line that runs the tool_unlock.g macro. This will de-activate the trigger so the machine does not e-stop when you unlock the tool.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M581</span> <span class="n">P0</span> <span class="n">T0</span> <span class="n">S1</span> <span class="n">R</span><span class="o">-</span><span class="mi">1</span> <span class="p">;</span> <span class="n">disable</span> <span class="n">triggering</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-crash-detection">
+<h4>Testing crash detection<a class="headerlink" href="#testing-crash-detection" title="Link to this heading"></a></h4>
+<p>Gingerly test that the detection works with a tool that you don’t care too much about. After picking up the tool, slowly push the bed up into the tip of the tool. At the first sign of deflection in the tool, the machine should disable steppers and reset.</p>
+<p>If you are having issues with false positives while moving the tool around the bed without crashing it, try re-running the tool-lock macro after the tool has been picked up. This will give an extra cinch on the tool locking pin, holding the tool on tighter. You can test this by clicking on the <code class="docutils literal notranslate"><span class="pre">tool_lock.g</span></code> macro in the duet web control interface, and implement it permanently by adding another tool_lock line to your tool pickup macro. This might cause some long-term reliability issues with the tool changer interface or motor. We are still testing this. Alternatively, you could decrease the maximum acceleration of the X and Y axes in the machine configuration.</p>
+</section>
+<section id="future-enhancements">
+<h4>Future enhancements<a class="headerlink" href="#future-enhancements" title="Link to this heading"></a></h4>
+<p>Currently, this implementation emergency stops the machine. Recovering from this is a major hassle, requiring parking tools, clearing the bed, re-homing the machine, and re-starting any experiments. The <code class="docutils literal notranslate"><span class="pre">M581</span></code> trigger command can be configured to run an arbitrary gcode macro instead of e-stopping. A macro could be set up to pause the machine and publish a ‘crash detected’ message to HTTP or MQTT clients using the <code class="docutils literal notranslate"><span class="pre">M118</span></code> command. Our science-jubilee python interface could be modified to gracefully interrupt running experiments and notify the user when a crash is detected, enabling smoother recovery.</p>
+</section>
+</section>
+</section>
+<section id="stallguard-based-crash-detection">
+<h2>StallGuard based crash detection<a class="headerlink" href="#stallguard-based-crash-detection" title="Link to this heading"></a></h2>
+<p>The Trinamic stepper motor drivers used in the Duet boards have stallGuard, a feature that allows the drivers to detect motor stalls. This would be ideal as it could allow for force-adjustable crash detection and could be always-on to detect issues when tools aren’t active. However, the general consensus seems to be that stall detection is finicky and requires extensive tuning. We have looked into this option and could not figure out the Duet config to get it to work. Read more on it <a class="reference external" href="https://docs.duet3d.com/User_manual/Connecting_hardware/Sensors_stall_detection">here</a>.</p>
+</section>
+<section id="computer-vision-based-incident-detection">
+<h2>Computer vision based incident detection<a class="headerlink" href="#computer-vision-based-incident-detection" title="Link to this heading"></a></h2>
+<p>Our third idea for incident detection is to use a computer vision system to monitor a video feed of Jubilee. The system could be trained on examples of correct operation and common incident scenarios. This would have the benefit of flagging non-crash incidents that could impact experiments, such as missed pipette tip pickups, but might struggle to detect edge-case crash incidents. We have not looked into options for implementing this.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="z_axis.html" class="btn btn-neutral float-left" title="Z Axis Assembly" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="building_tools.html" class="btn btn-neutral float-right" title="Building Science Jubilee Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Machine Agency.
+      <span class="lastupdated">Last updated on Sep 05, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

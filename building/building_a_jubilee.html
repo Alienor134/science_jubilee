@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science Jubilee Build Instructions &mdash; Science Jubilee 0.0.post1.dev1+gf2e106aa6.d20260905 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="../_static/logo.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ee6133ab"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Prerequisite Knowledge" href="prerequisite_knowledge.html" />
+    <link rel="prev" title="Build Guides" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Science Jubilee
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html">Installing science-jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/first_session.html">Your first session</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#mock-session">Mock session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#homing-and-moving">Homing and moving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#picking-up-a-tool">Picking up a tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#navigating-to-a-labware-well">Navigating to a labware well</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#cleanup">Cleanup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/env_files.html">Configuring science-jubilee with .env files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-mock-offline-development"><code class="docutils literal notranslate"><span class="pre">.env.mock</span></code> — offline development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-hardware-connected-machine"><code class="docutils literal notranslate"><span class="pre">.env.hardware</span></code> — connected machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#full-variable-reference">Full variable reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/primer.html">G-code, coordinates, and tool changing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#gcode">GCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#coordinate-system">Coordinate System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#absolute-and-relative-positioning">Absolute and Relative Positioning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#toolchanging">Toolchanging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/new_user_guide.html">End-to-end setup for a new lab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#what-is-jubilee">What is Jubilee?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#where-to-find-help">Where to find help?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware">Hardware:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#software">Software:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#tools">Tools:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#things-to-be-aware-of-if-you-are-new-to-motion-platforms">0. Things to be aware of if you are new to motion platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#assemble-and-configure-the-motion-platform">1. Assemble and configure the motion platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware-assembly">Hardware assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#wiring">Wiring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#board-provisioning-and-initial-connection">Board provisioning and initial connection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#build-and-install-the-tools-you-will-be-using">2. Build and install the tools you will be using</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-pipette">Building the pipette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-camera-tool">Building the camera tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#setting-tool-parking-post-positions-and-offsets">Setting tool parking post positions and offsets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#install-and-calibrate-the-lab-automation-deck-plate">3. Install and calibrate the lab automation deck plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#run-your-first-experiment-script">4. Run your first experiment script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">User Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../users/writing_experiments.html">Writing an experiment script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#freenavigator-jogging-and-setup"><code class="docutils literal notranslate"><span class="pre">FreeNavigator</span></code> — jogging and setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#decknavigator-labware-aware-experiments"><code class="docutils literal notranslate"><span class="pre">DeckNavigator</span></code> — labware-aware experiments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#recording-labelled-steps-in-the-run-report">Recording labelled steps in the run report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#where-deck-definitions-come-from">Where deck definitions come from</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/environment_reference.html">Every environment variable, explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#transport">Transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#experiment-layout">Experiment layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#attached-peripherals">Attached peripherals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#twin-downstream-tools">Twin &amp; downstream tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#resolution-order">Resolution order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/troubleshooting.html">Common errors and how to fix them</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#valueerror-jubilee-address-must-be-set-when-jubilee-transport-hardware"><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">JUBILEE_ADDRESS</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">set</span> <span class="pre">...</span> <span class="pre">when</span> <span class="pre">JUBILEE_TRANSPORT=hardware</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-session-hangs-for-15-s-on-startup">The session hangs for ~15 s on startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#mock-mode-uses-a-stale-tool-table">Mock mode uses a stale tool table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#import-fails-with-modulenotfounderror-no-module-named-neopixel-or-similar">Import fails with <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'neopixel'</span></code> (or similar)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-trace-html-doesnt-appear">The trace HTML doesn’t appear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-digital-twin-cant-find-my-tool">The digital twin can’t find my tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-build-fails-with-relative-import-with-too-many-levels-1-for-module-http">The build fails with <code class="docutils literal notranslate"><span class="pre">Relative</span> <span class="pre">import</span> <span class="pre">with</span> <span class="pre">too</span> <span class="pre">many</span> <span class="pre">levels</span> <span class="pre">(1)</span> <span class="pre">for</span> <span class="pre">module</span> <span class="pre">'http'</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Build Guides</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Science Jubilee Build Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#recommended-upgrades">Recommended upgrades</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tools">Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#to-buy">To Buy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#already-included-in-kit">Already included in kit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#assembly-instructions">Assembly Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heatset_inserts.html">Heatset Insert Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corner_brackets.html">Inside Corner Bracket Prep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="outer_frame.html">Outer Frame Assembly and Alignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motor_plate.html">Aluminum Motor Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corner_plate.html">Double Pulley Corner Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crossbar.html">Aluminum Crossbar Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="REL.html">Toolchanger Remote Elastic Lock Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolchanger_carriage.html">Toolchanger Carriage Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_plate.html">Magnetic Build Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="panel.html">Duet Electronics Panel Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lower_frame.html">Lower Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corexy.html">CoreXY Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="z_axis.html">Z Axis Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_crash_detection.html">Science Jubilee Tool Crash Detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#videos">Videos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-jubilee-resources">Additional Jubilee Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#footnotes">Footnotes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building_tools.html">Building Science Jubilee Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-prerequisites">Tool Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#parking-post">Parking Post</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#tool-wings">Tool Wings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#tool-plate">Tool Plate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#fabricating-a-tool">Fabricating a Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#cable-management">Cable Management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-gallery">Tool Gallery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#pipette-tool">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#inoculation-loop-tool">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#top-down-camera-tool">Top-Down Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#side-camera-tool">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#syringe-tool">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#lab-automation-deck">Lab Automation Deck</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#designing-custom-tools">Designing Custom Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-postrequisites">Tool Postrequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pipette_tool.html">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inoculation_tool.html">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="top_down_camera_tool.html">Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="side_camera_tool.html">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="syringe_tool.html">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_syringe.html">Digital Pipette HTTP Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lab_automation_deck.html">Lab Automation Deck</a></li>
+<li class="toctree-l4"><a class="reference internal" href="designing_custom_tools.html">Designing Custom Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_postreqs.html">Tool Postrequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jubilee_travel.html">Traveling with Jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#export-control">Export Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#customs">Customs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jubilee_travel.html#packing-and-transport">Packing and transport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#products">Products</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="jubilee_travel.html#jubilee-in-assembled-state-untested">Jubilee in assembled state (untested)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="jubilee_travel.html#jubilee-in-height-reduced-state">Jubilee in height-reduced state</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../new_tool/index.html">Design a new tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-1-hardware">Step 1 — Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-2-scaffold-the-plugin">Step 2 — Scaffold the plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-3-naming-the-tool-key">Step 3 — Naming: the <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-4-repo-layout">Step 4 — Repo layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-5-entry-points">Step 5 — Entry points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-6-the-tool-subclass">Step 6 — The <code class="docutils literal notranslate"><span class="pre">Tool</span></code> subclass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-7-duet-firmware-setup-per-machine-not-per-plugin">Step 7 — Duet firmware setup (per-machine, not per-plugin)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-8-calibrate-on-the-machine">Step 8 — Calibrate on the machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-9-digital-twin-blend-asset">Step 9 — Digital-twin <code class="docutils literal notranslate"><span class="pre">.blend</span></code> asset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#reference-implementations">Reference implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_code.html">Code Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#issues">Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#working-on-the-science-jubilee-codebase">Working on the <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code> Codebase</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#forking-the-codebase">Forking the Codebase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#git-workflow">Git Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_docs.html">Documentation Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_docs.html#documentation-overview">Documentation Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#building-the-docs">Building the Docs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-new-pages">Adding New Pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-inline-documentation">Adding Inline Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-notebooks">Adding Notebooks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/plugins.html">Choosing the right plugin type</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#decision-tree">Decision tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#the-common-pattern">The common pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#which-entry-points-does-core-actually-consume">Which entry points does core actually consume?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#naming-rules">Naming rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#version-discipline">Version discipline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#what-lives-where">What lives where</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/labware_plugin.html">Labware plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#required-entry-points">Required entry points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#naming-convention">Naming convention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/deck_plugin.html">Deck plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#required-entry-point">Required entry point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#deck-json-schema-summary">Deck JSON schema (summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/digital_twin_plugin.html">Digital-twin plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#three-levels">Three levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#file-tree-level-3">File tree (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#required-entry-point-level-3">Required entry point (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/entry_points.html">Plugin discovery (entry points)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#table">Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#names-within-each-group">Names within each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#ecosystem-publishers-today">Ecosystem publishers today</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#adding-your-own">Adding your own</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/machine_state.html">Machine state and snapshots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#signature">Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#fallback-chain">Fallback chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#the-snapshot-machine-json">The snapshot: <code class="docutils literal notranslate"><span class="pre">machine.json</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#pipeline-data-layout">Pipeline data layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#reading-it-yourself">Reading it yourself</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/trace.html">Session trace (HTML recap)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#where-it-lives">Where it lives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#whats-in-a-trace">What’s in a trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#standard-sections-written-by-science-jubilee">Standard sections written by <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#adding-to-a-trace-from-user-code">Adding to a trace from user code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#log-capture">Log capture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#threading">Threading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Science Jubilee</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Build Guides</a></li>
+      <li class="breadcrumb-item active">Science Jubilee Build Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/building/building_a_jubilee.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="Build Guides" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="prerequisite_knowledge.html" class="btn btn-neutral float-right" title="Prerequisite Knowledge" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="science-jubilee-build-instructions">
+<span id="jubilee-build-resources"></span><h1>Science Jubilee Build Instructions<a class="headerlink" href="#science-jubilee-build-instructions" title="Link to this heading"></a></h1>
+<p>So, you’re ready to build a Science Jubilee! This guide is a complete set of instructions to get you set up and running, from hardware and tools to building and software setup.</p>
+<p>To supplement the text, we also have an ongoing series of build along videos. Check out the intro here:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8JUbr9aU8eQ" style="border: 0; height: 345px; width: 560px">
+</iframe></div><section id="hardware">
+<h2>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h2>
+<p>The parts to build a Jubilee have been consolidated into <a class="reference external" href="https://www.filastruder.com/collections/jubilee/products/jubilee-motion-platform-kit">a kit by Filastruder</a>. No royalties are provided to Machine Agency for these sales, but Filastruder works with Machine Agency to ensure the parts are of suitable quality and tolerance.</p>
+<p>We recommend the following kit options for a Science Jubilee build:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option Category</p></th>
+<th class="head"><p>Selection</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Extrusion Anodization Color</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Purple</span></code> or <code class="docutils literal notranslate"><span class="pre">Blue</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Printed Parts Color<a class="footnote-reference brackets" href="#prints" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Orange</span></code>, <code class="docutils literal notranslate"><span class="pre">Blue</span></code>, or <code class="docutils literal notranslate"><span class="pre">Black</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Panel Options</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Back</span> <span class="pre">and</span> <span class="pre">side</span> <span class="pre">panels</span> <span class="pre">(white)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Bed Plate Options</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PEI</span> <span class="pre">Plate</span> <span class="pre">and</span> <span class="pre">Magnetic</span> <span class="pre">Sticky</span> <span class="pre">Sheet</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Bed Heater Options<a class="footnote-reference brackets" href="#heater" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Electronics<a class="footnote-reference brackets" href="#duet" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Duet</span> <span class="pre">3</span> <span class="pre">Mini</span> <span class="pre">Ethernet</span> <span class="pre">+</span> <span class="pre">3HC</span> <span class="pre">(up</span> <span class="pre">to</span> <span class="pre">2</span> <span class="pre">tools)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Electronics Expansion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+1</span> <span class="pre">3HC</span> <span class="pre">Expansion</span> <span class="pre">(up</span> <span class="pre">to</span> <span class="pre">5</span> <span class="pre">tools</span> <span class="pre">total)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE: You will also need to purchase <a class="reference external" href="https://www.raspberrypi.com/products/raspberry-pi-5/?variant=raspberry-pi-5-desktop-kit-us">a Raspberry Pi 5 kit</a> separately</strong><a class="footnote-reference brackets" href="#duet" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
+<p>Check out the Sourcing video to to see how to order the kit:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/or2Qg8UBInM" style="border: 0; height: 345px; width: 560px">
+</iframe></div><section id="recommended-upgrades">
+<h3>Recommended upgrades<a class="headerlink" href="#recommended-upgrades" title="Link to this heading"></a></h3>
+<p>Mandala Rose Works produces aluminum upgrades for several components on Jubilee. Replacing stock PLA 3D printed parts with their aluminum counterparts can increase the reliability and solvent compatibility of the motion platform. These upgrades are listed in order of their priority in our view. If you plan to use the OT2 pipette tool on your Jubilee, you should purchase the aluminum Z yokes.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Part</p></th>
+<th class="head"><p>Link</p></th>
+<th class="head"><p>Reason to upgrade</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Z yokes</p></td>
+<td><p><a class="reference external" href="https://mandalaroseworks.com/products/jubilee-machined-yokes">https://mandalaroseworks.com/products/jubilee-machined-yokes</a></p></td>
+<td><p>Allows use of a zip tie or pony clamp to prevent bed-tip issues</p></td>
+</tr>
+<tr class="row-odd"><td><p>Front Corner Brackets</p></td>
+<td><p><a class="reference external" href="https://mandalaroseworks.com/products/jubilee-front-corner-brackets">https://mandalaroseworks.com/products/jubilee-front-corner-brackets</a></p></td>
+<td><p>Improved durability of bracket. Note: requires 6 M5x25mm screws to install</p></td>
+</tr>
+<tr class="row-even"><td><p>CoreXY Stepper mounts</p></td>
+<td><p><a class="reference external" href="https://mandalaroseworks.com/products/jubilee-aluminum-stepper-mounts">https://mandalaroseworks.com/products/jubilee-aluminum-stepper-mounts</a></p></td>
+<td><p>Improved pulley alignment and durability. Note hardware requirements listed at link</p></td>
+</tr>
+<tr class="row-odd"><td><p>Z motor mount plates</p></td>
+<td><p><a class="reference external" href="https://mandalaroseworks.com/products/jubilee-machined-zplates">https://mandalaroseworks.com/products/jubilee-machined-zplates</a></p></td>
+<td><p>Improved solvent resistance. Looks cool</p></td>
+</tr>
+<tr class="row-even"><td><p>Tool changer carriage</p></td>
+<td><p><a class="reference external" href="https://mandalaroseworks.com/products/jubilee-machined-carriage">https://mandalaroseworks.com/products/jubilee-machined-carriage</a></p></td>
+<td><p>We haven’t used these but have heard they are nice</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Link to this heading"></a></h2>
+<p>You will need to procure some tools on your own, but some are already available in the Filastruder kit.</p>
+<section id="to-buy">
+<h3>To Buy<a class="headerlink" href="#to-buy" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Calipers [<a class="reference external" href="https://www.amazon.com/Neiko-01407A-Electronic-Digital-Stainless/dp/B000GSLKIW">US Amazon</a>]</p></li>
+<li><p>Wire Cutters [<a class="reference external" href="https://www.amazon.com/Hakko-CHP-170-Micro-Cutter/dp/B076M3ZHBV">US Amazon</a>]</p></li>
+<li><p>SN-2549 Wire Crimpers [<a class="reference external" href="https://www.amazon.com/gp/product/B01N4L8QMW">US Amazon</a>]</p></li>
+<li><p>Arbor Press [<a class="reference external" href="https://www.amazon.com/Palmgren-AP05-0-5-Arbor-Press/dp/B01MQD4CNR">US Amazon</a>]</p></li>
+<li><p>Soldering iron [<a class="reference external" href="https://www.amazon.com/Weller-SP40NUS-40-Watt-Soldering-Iron/dp/B00B3SG6UQ?th=1">US Amazon</a>] (<em>treat this one as dedicated tool meant only for heat set inserts</em>)</p></li>
+<li><p>Thin flathead screwdriver (<em>for replacing the default soldering tip with the heatset insert tip</em>) and Phillips-head screwdriver (<em>for (un)screwing terminal plugs on the power supply</em>) [<a class="reference external" href="https://www.amazon.com/Magnetic-Screwdriver-Professional-Screwdrivers-Improvement/dp/B08XY5C41N/">US Amazon, 6-piece set</a> (untested)]</p></li>
+<li><p>4” reusable cable ties [<a class="reference external" href="https://www.amazon.com/Adjustable-Organizer-Multi-purpose-Management-Organizing/dp/B0CJ52WJZY/?th=1">US Amazon</a>]</p></li>
+<li><p>8” reusable cable ties [<a class="reference external" href="https://www.amazon.com/Adjustable-Organizer-Multi-purpose-Management-Organizing/dp/B0CJ4W5VN5/?th=1">US Amazon</a>]</p></li>
+</ul>
+</section>
+<section id="already-included-in-kit">
+<h3>Already included in kit<a class="headerlink" href="#already-included-in-kit" title="Link to this heading"></a></h3>
+<p>Certain tools are already included in the Filastruder kit. This information is included for your reference.</p>
+<ul class="simple">
+<li><p>Hex key 1.5 mm (not ball end) (alternative: [<a class="reference external" href="https://www.mcmaster.com/5497a51">1.5 mm ball end hex key, US McMaster-Carr</a>])</p></li>
+<li><p>Ball end hex keys (2.0 mm, 2.5 mm, 3.0 mm) (alternatives: [<a class="reference external" href="https://www.mcmaster.com/5497a52">2.0 mm, US McMaster-Carr</a>], [<a class="reference external" href="https://www.mcmaster.com/5497a53">2.5 mm, US McMaster-Carr</a>], [<a class="reference external" href="https://www.mcmaster.com/5497a54">3.0 mm, US McMaster-Carr</a>], NOTE: the ones from the kit do not include a grip handle)</p></li>
+<li><p>2-pack of 4-inch Quick-Grip Clamps (NOTE: you will need to remove the pin on the end of the bar; alternative <a class="reference external" href="https://www.amazon.com/IRWINQUICK-GRIPOne-Handed-Micro-Clamp-Pack-1964747/dp/B00004SBCO">US Amazon</a> (no modification required))</p></li>
+<li><p>Threadlocker Blue (2.5 mL) (alternative: <a class="reference external" href="https://www.amazon.com/Permatex-24200-Medium-Strength-Threadlocker/dp/B0002UEMZ2">Vibra-Tite</a>)</p></li>
+<li><p>M3-M4 Heatset Insert Installation Tip (alternative: [<a class="reference external" href="https://www.mcmaster.com/92160a115">US McMaster-Carr</a>])</p></li>
+<li><p>Set of 2 25-50-75mm machinist blocks (alternative: [<a class="reference external" href="https://www.amazon.com/BL-25-50-75-Pair-Precision-Steel-Blocks/dp/B002HIYZJU">US Amazon</a>])</p></li>
+<li><p>M3 Hex Nut Driver (alternatives: [<a class="reference external" href="https://www.filastruder.com/products/5-5mm-nut-driver?variant=17989593104455">Filastruder</a>], [<a class="reference external" href="https://www.amazon.com/gp/product/B00G2DNXV2/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&amp;psc=1">US Amazon</a>])</p></li>
+<li><p>100-pack of 2.5mm (0.1in.) thick zip ties</p></li>
+</ul>
+</section>
+<section id="additional-notes">
+<h3>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading"></a></h3>
+<p>You will also need a flat surface during assembly, ideally one that is somewhat heat tolerant when dealing with heatset inserts. Wear protective eyewear (e.g., [<a class="reference external" href="https://www.amazon.com/BK310AF-Polycarbonate-Anti-Fog-Safety-Non-Slip/dp/B009A658JS/">US Amazon</a>]) while working with hand tools, especially while using a soldering iron, cutting springs, and press-fitting components.</p>
+</section>
+</section>
+<section id="assembly-instructions">
+<span id="id5"></span><h2>Assembly Instructions<a class="headerlink" href="#assembly-instructions" title="Link to this heading"></a></h2>
+<p>The instructions must be completed sequentially from Section 1 to Section 3. Instructions in the same section don’t explicitly depend on each other, so they can be done at the same time with a friend. In total, plan for ~30 hours within a full week to complete a first-time build.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We recommend isolating the build window to within a week and building with no more than two or three individuals in total. This will help reduce the startup cost of picking up where you left off and minimize issues that might come up from poor understanding of the full system. Ideally, all individuals should be involved from the beginning of the process.</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Prerequisite Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Part Prep</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="heatset_inserts.html">Heatset Insert Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corner_brackets.html">Inside Corner Bracket Prep</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Section 1: Module Assembly</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outer_frame.html">Outer Frame Assembly and Alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motor_plate.html">Aluminum Motor Plate Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corner_plate.html">Double Pulley Corner Plate Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crossbar.html">Aluminum Crossbar Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="REL.html">Toolchanger Remote Elastic Lock Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toolchanger_carriage.html">Toolchanger Carriage Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_plate.html">Magnetic Build Plate Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="panel.html">Duet Electronics Panel Assembly</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Section 2: Frame Assembly</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lower_frame.html">Lower Frame Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corexy.html">CoreXY Frame Assembly</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Section 3: Final Assembly and Tuning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="z_axis.html">Z Axis Assembly</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Enhancements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tool_crash_detection.html">Science Jubilee Tool Crash Detection</a></li>
+</ul>
+</div>
+<section id="videos">
+<h3>Videos<a class="headerlink" href="#videos" title="Link to this heading"></a></h3>
+<p>In addition to the pdf instructions, we created a <a class="reference external" href="https://www.youtube.com/watch?v=8JUbr9aU8eQ">YouTube playlist for certain steps of the build process</a> that may be of help.</p>
+</section>
+</section>
+<section id="additional-jubilee-resources">
+<h2>Additional Jubilee Resources<a class="headerlink" href="#additional-jubilee-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jubilee3d.com/index.php?title=Main_Page">Jubilee Wiki</a>. This is the main documentation hub for the Jubilee project. We encourage you to look through the resources organized on the left-hand sidebar–there’s a lot of info there! While not all pages on the wiki will be relevant for lab automation, many help demonstrate Jubilee functionality.</p></li>
+<li><p><a class="reference external" href="https://discord.gg/jubilee">Jubilee Discord</a>. The Jubilee Builders and Extenders Discord is actively used by the Jubilee Community. If you have a question about a build step or troubleshooting your machine, this is a great place to get help! Discussion is organized by topic–you may be interested in the <code class="docutils literal notranslate"><span class="pre">#lab-automation</span></code> channel, for example.</p></li>
+<li><p><a class="reference external" href="https://discord.gg/ubxU2rMJwN">Lab Automation Discord</a>. The open lab automation discord is a focused on lab automation with a heavy Jubilee bent. This is the best spot to ask questions about Jubilee’s capabilities with regard to your science.</p></li>
+<li><p><a class="reference external" href="https://jubilee3d.com/index.php?title=Getting_Parts">Sourcing parts independently</a>. If you’d prefer to source parts yourselves rather than buy a kit from Filastruder, <a class="reference external" href="https://jubilee3d.com">https://jubilee3d.com</a> has a section with a shopping list and other recommendations.</p></li>
+<li><p><a class="reference external" href="https://jubilee3d.com/index.php?title=Assembly_Instructions">(Original) Jubilee Assembly Instructions</a>. These are the original Jubilee build instructions from which the Science Jubilee build instructions are based on.</p></li>
+</ul>
+</section>
+<section id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading"></a></h2>
+</section>
+</section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="prints" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Luke’s Laboratory also sells <a class="reference external" href="https://lukeslabonline.com/products/jubilee-printed-parts-kit-asa?variant=40134863651001">a set of Jubilee 3D printed parts</a> in case the 3D printed parts are out of stock on Filastruder. This is the recommended option for Science Jubilee, and the build instructions here are based on the specific configuration in the kit. No royalties are given to us; however, Filastruder and Lukes Laboratory work with us to ensure the parts are of suitable quality and tolerance to meet the needs of a Jubilee build.</p>
+</aside>
+<aside class="footnote brackets" id="heater" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code> assumes you don’t plan to use it as an FDM 3D printer or perform experiments with the entire bed heated; otherwise, you can choose <code class="docutils literal notranslate"><span class="pre">120v,</span> <span class="pre">750W</span> <span class="pre">Keenovo</span> <span class="pre">Heater</span> <span class="pre">w/</span> <span class="pre">150C</span> <span class="pre">Thermal</span> <span class="pre">Cutoff</span> <span class="pre">&amp;</span> <span class="pre">SSR</span></code> (assumes North America).</p>
+</aside>
+<aside class="footnote brackets" id="duet" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
+<p>Both the Ethernet and WiFi version can be controlled via a Raspberry Pi (e.g., RPi 4B, RPi 5) by directly connecting to the Duet 3 Mini, which we recommend. This allows you to connect to a variety of WiFi networks (e.g., WPA2-Personal, WPA2-Enterprise), which means connecting to networks such as Eduroam is supported. By contrast, the <code class="docutils literal notranslate"><span class="pre">Duet</span> <span class="pre">3</span> <span class="pre">Mini</span> <span class="pre">WiFi</span> <span class="pre">+</span> <span class="pre">3HC</span></code> (without a Raspberry Pi connected) can only connect to 2.4 GHz WPA2-personal networks, which means 5G networks and networks like Eduroam typical of academic, government, and industry settings are not supported. While both the Ethernet and WiFi <code class="docutils literal notranslate"><span class="pre">Duet</span> <span class="pre">3</span> <span class="pre">Mini</span> <span class="pre">+</span> <span class="pre">3HC</span></code> versions can be used with a Raspberry Pi, we recommend the Ethernet version primarily because it can simplify troubleshooting if you have any issues with the Raspberry Pi Duet 3 Mini firmware. Aside: For laboratory automation in general, you may consider <a class="reference external" href="https://github.com/sparks-baird/self-driving-lab-demo/discussions/83">implementing a standalone IoT network</a> to support microcontrollers such as the Raspberry Pi Pico W, which can be used within custom Jubilee tools.</p>
+</aside>
+</aside>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Build Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="prerequisite_knowledge.html" class="btn btn-neutral float-right" title="Prerequisite Knowledge" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Machine Agency.
+      <span class="lastupdated">Last updated on Sep 05, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

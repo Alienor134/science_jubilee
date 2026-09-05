@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design a new tool &mdash; Science Jubilee 0.0.post1.dev1+gf2e106aa6.d20260905 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="../_static/logo.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ee6133ab"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Development" href="../development/index.html" />
+    <link rel="prev" title="Traveling with Jubilee" href="../building/jubilee_travel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Science Jubilee
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html">Installing science-jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/first_session.html">Your first session</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#mock-session">Mock session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#homing-and-moving">Homing and moving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#picking-up-a-tool">Picking up a tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#navigating-to-a-labware-well">Navigating to a labware well</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#cleanup">Cleanup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/env_files.html">Configuring science-jubilee with .env files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-mock-offline-development"><code class="docutils literal notranslate"><span class="pre">.env.mock</span></code> — offline development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-hardware-connected-machine"><code class="docutils literal notranslate"><span class="pre">.env.hardware</span></code> — connected machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#full-variable-reference">Full variable reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/primer.html">G-code, coordinates, and tool changing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#gcode">GCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#coordinate-system">Coordinate System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#absolute-and-relative-positioning">Absolute and Relative Positioning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#toolchanging">Toolchanging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/new_user_guide.html">End-to-end setup for a new lab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#what-is-jubilee">What is Jubilee?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#where-to-find-help">Where to find help?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware">Hardware:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#software">Software:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#tools">Tools:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#things-to-be-aware-of-if-you-are-new-to-motion-platforms">0. Things to be aware of if you are new to motion platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#assemble-and-configure-the-motion-platform">1. Assemble and configure the motion platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware-assembly">Hardware assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#wiring">Wiring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#board-provisioning-and-initial-connection">Board provisioning and initial connection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#build-and-install-the-tools-you-will-be-using">2. Build and install the tools you will be using</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-pipette">Building the pipette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-camera-tool">Building the camera tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#setting-tool-parking-post-positions-and-offsets">Setting tool parking post positions and offsets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#install-and-calibrate-the-lab-automation-deck-plate">3. Install and calibrate the lab automation deck plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#run-your-first-experiment-script">4. Run your first experiment script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">User Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../users/writing_experiments.html">Writing an experiment script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#freenavigator-jogging-and-setup"><code class="docutils literal notranslate"><span class="pre">FreeNavigator</span></code> — jogging and setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#decknavigator-labware-aware-experiments"><code class="docutils literal notranslate"><span class="pre">DeckNavigator</span></code> — labware-aware experiments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#recording-labelled-steps-in-the-run-report">Recording labelled steps in the run report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#where-deck-definitions-come-from">Where deck definitions come from</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/environment_reference.html">Every environment variable, explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#transport">Transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#experiment-layout">Experiment layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#attached-peripherals">Attached peripherals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#twin-downstream-tools">Twin &amp; downstream tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#resolution-order">Resolution order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/troubleshooting.html">Common errors and how to fix them</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#valueerror-jubilee-address-must-be-set-when-jubilee-transport-hardware"><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">JUBILEE_ADDRESS</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">set</span> <span class="pre">...</span> <span class="pre">when</span> <span class="pre">JUBILEE_TRANSPORT=hardware</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-session-hangs-for-15-s-on-startup">The session hangs for ~15 s on startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#mock-mode-uses-a-stale-tool-table">Mock mode uses a stale tool table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#import-fails-with-modulenotfounderror-no-module-named-neopixel-or-similar">Import fails with <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'neopixel'</span></code> (or similar)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-trace-html-doesnt-appear">The trace HTML doesn’t appear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-digital-twin-cant-find-my-tool">The digital twin can’t find my tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-build-fails-with-relative-import-with-too-many-levels-1-for-module-http">The build fails with <code class="docutils literal notranslate"><span class="pre">Relative</span> <span class="pre">import</span> <span class="pre">with</span> <span class="pre">too</span> <span class="pre">many</span> <span class="pre">levels</span> <span class="pre">(1)</span> <span class="pre">for</span> <span class="pre">module</span> <span class="pre">'http'</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../building/index.html">Build Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../building/building_a_jubilee.html">Science Jubilee Build Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_a_jubilee.html#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_a_jubilee.html#recommended-upgrades">Recommended upgrades</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_a_jubilee.html#tools">Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_a_jubilee.html#to-buy">To Buy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_a_jubilee.html#already-included-in-kit">Already included in kit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_a_jubilee.html#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_a_jubilee.html#assembly-instructions">Assembly Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../building/prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/heatset_inserts.html">Heatset Insert Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/corner_brackets.html">Inside Corner Bracket Prep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/outer_frame.html">Outer Frame Assembly and Alignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/motor_plate.html">Aluminum Motor Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/corner_plate.html">Double Pulley Corner Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/crossbar.html">Aluminum Crossbar Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/REL.html">Toolchanger Remote Elastic Lock Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/toolchanger_carriage.html">Toolchanger Carriage Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/build_plate.html">Magnetic Build Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/panel.html">Duet Electronics Panel Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/lower_frame.html">Lower Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/corexy.html">CoreXY Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/z_axis.html">Z Axis Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/tool_crash_detection.html">Science Jubilee Tool Crash Detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_a_jubilee.html#videos">Videos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_a_jubilee.html#additional-jubilee-resources">Additional Jubilee Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_a_jubilee.html#footnotes">Footnotes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../building/building_tools.html">Building Science Jubilee Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_tools.html#tool-prerequisites">Tool Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#parking-post">Parking Post</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#tool-wings">Tool Wings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#tool-plate">Tool Plate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#fabricating-a-tool">Fabricating a Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#cable-management">Cable Management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_tools.html#tool-gallery">Tool Gallery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#pipette-tool">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#inoculation-loop-tool">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#top-down-camera-tool">Top-Down Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#side-camera-tool">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#syringe-tool">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/building_tools.html#lab-automation-deck">Lab Automation Deck</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_tools.html#designing-custom-tools">Designing Custom Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_tools.html#tool-postrequisites">Tool Postrequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../building/pipette_tool.html">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/inoculation_tool.html">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/top_down_camera_tool.html">Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/side_camera_tool.html">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/syringe_tool.html">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/http_syringe.html">Digital Pipette HTTP Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/lab_automation_deck.html">Lab Automation Deck</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/designing_custom_tools.html">Designing Custom Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/tool_postreqs.html">Tool Postrequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../building/building_tools.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../building/jubilee_travel.html">Traveling with Jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../building/jubilee_travel.html#export-control">Export Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../building/jubilee_travel.html#customs">Customs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../building/jubilee_travel.html#packing-and-transport">Packing and transport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../building/jubilee_travel.html#products">Products</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../building/jubilee_travel.html#jubilee-in-assembled-state-untested">Jubilee in assembled state (untested)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../building/jubilee_travel.html#jubilee-in-height-reduced-state">Jubilee in height-reduced state</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../building/prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design a new tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-hardware">Step 1 — Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-scaffold-the-plugin">Step 2 — Scaffold the plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-naming-the-tool-key">Step 3 — Naming: the <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-repo-layout">Step 4 — Repo layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-entry-points">Step 5 — Entry points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-the-tool-subclass">Step 6 — The <code class="docutils literal notranslate"><span class="pre">Tool</span></code> subclass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-duet-firmware-setup-per-machine-not-per-plugin">Step 7 — Duet firmware setup (per-machine, not per-plugin)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-calibrate-on-the-machine">Step 8 — Calibrate on the machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-9-digital-twin-blend-asset">Step 9 — Digital-twin <code class="docutils literal notranslate"><span class="pre">.blend</span></code> asset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-implementations">Reference implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_code.html">Code Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#issues">Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#working-on-the-science-jubilee-codebase">Working on the <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code> Codebase</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#forking-the-codebase">Forking the Codebase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#git-workflow">Git Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_docs.html">Documentation Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_docs.html#documentation-overview">Documentation Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#building-the-docs">Building the Docs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-new-pages">Adding New Pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-inline-documentation">Adding Inline Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-notebooks">Adding Notebooks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/plugins.html">Choosing the right plugin type</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#decision-tree">Decision tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#the-common-pattern">The common pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#which-entry-points-does-core-actually-consume">Which entry points does core actually consume?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#naming-rules">Naming rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#version-discipline">Version discipline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#what-lives-where">What lives where</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/labware_plugin.html">Labware plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#required-entry-points">Required entry points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#naming-convention">Naming convention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/deck_plugin.html">Deck plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#required-entry-point">Required entry point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#deck-json-schema-summary">Deck JSON schema (summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/digital_twin_plugin.html">Digital-twin plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#three-levels">Three levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#file-tree-level-3">File tree (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#required-entry-point-level-3">Required entry point (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/entry_points.html">Plugin discovery (entry points)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#table">Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#names-within-each-group">Names within each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#ecosystem-publishers-today">Ecosystem publishers today</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#adding-your-own">Adding your own</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/machine_state.html">Machine state and snapshots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#signature">Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#fallback-chain">Fallback chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#the-snapshot-machine-json">The snapshot: <code class="docutils literal notranslate"><span class="pre">machine.json</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#pipeline-data-layout">Pipeline data layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#reading-it-yourself">Reading it yourself</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/trace.html">Session trace (HTML recap)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#where-it-lives">Where it lives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#whats-in-a-trace">What’s in a trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#standard-sections-written-by-science-jubilee">Standard sections written by <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#adding-to-a-trace-from-user-code">Adding to a trace from user code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#log-capture">Log capture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#threading">Threading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Science Jubilee</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Design a new tool</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/new_tool/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../building/jubilee_travel.html" class="btn btn-neutral float-left" title="Traveling with Jubilee" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../development/index.html" class="btn btn-neutral float-right" title="Development" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="design-a-new-tool">
+<span id="tool-plugin-guide"></span><span id="new-tool"></span><h1>Design a new tool<a class="headerlink" href="#design-a-new-tool" title="Link to this heading"></a></h1>
+<p>A “new tool” for Jubilee has two halves: a physical assembly that mounts
+on the toolchanger, and a Python plugin that exposes it to
+<code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code>. Both halves live in <strong>the same repository</strong> — the
+hardware CAD, the firmware macros, and the Python code all ship together.</p>
+<p>This page walks through both halves in order.</p>
+<section id="step-1-hardware">
+<h2>Step 1 — Hardware<a class="headerlink" href="#step-1-hardware" title="Link to this heading"></a></h2>
+<p>Before writing any Python, you need a working physical tool. The
+existing hardware guides in the Build section cover the pieces:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../building/designing_custom_tools.html"><span class="std std-doc">Designing custom tools</span></a> — CAD conventions and the tool-template STL that guarantees the balls and wedge plate are placed correctly</p></li>
+<li><p><a class="reference internal" href="../building/parking_posts.html"><span class="std std-doc">Parking posts</span></a> — where the tool lives when it’s not on the carriage</p></li>
+<li><p><a class="reference internal" href="../building/tool_offsets.html"><span class="std std-doc">Tool offsets</span></a> — how to measure the tool’s active point in the machine coordinate system</p></li>
+<li><p><a class="reference internal" href="../building/tool_postreqs.html"><span class="std std-doc">Tool postrequisites</span></a> — the calibration procedure once assembly is done</p></li>
+</ul>
+<p>You do <strong>not</strong> need to ship any of the calibration output (parking-post
+coordinates, tool offsets) with the plugin — those are machine-specific.
+Your plugin ships zeroed templates; each user’s calibration notebook
+fills them in on their own machine.</p>
+</section>
+<section id="step-2-scaffold-the-plugin">
+<h2>Step 2 — Scaffold the plugin<a class="headerlink" href="#step-2-scaffold-the-plugin" title="Link to this heading"></a></h2>
+<p>The fastest way to bootstrap the software half is the included
+scaffolder, which produces a complete testable repo skeleton:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>create-tool-plugin<span class="w"> </span>--key<span class="w"> </span>csl_fluo<span class="w"> </span>--name<span class="w"> </span><span class="s2">"Fluorescence Imager"</span><span class="w"> </span>--out<span class="w"> </span>~/repos
+</pre></div>
+</div>
+<p>It generates <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">tool.py</span></code>, <code class="docutils literal notranslate"><span class="pre">mock.py</span></code>, tests that pass
+immediately, and zeroed <code class="docutils literal notranslate"><span class="pre">tpre0.g</span></code> / <code class="docutils literal notranslate"><span class="pre">tpost0.g</span></code> / <code class="docutils literal notranslate"><span class="pre">tfree0.g</span></code> firmware
+templates. Unzip, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code>, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> — all green.</p>
+<p>The rest of this page explains the conventions the scaffolder encodes,
+in case you want to build the repo by hand or understand what was
+generated.</p>
+</section>
+<section id="step-3-naming-the-tool-key">
+<h2>Step 3 — Naming: the <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code><a class="headerlink" href="#step-3-naming-the-tool-key" title="Link to this heading"></a></h2>
+<p>Every tool has a single canonical name called the <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code>:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Rule</p></th>
+<th class="head"><p>Reason</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lowercase ASCII letters, digits, underscores</p></td>
+<td><p>RepRapFirmware <code class="docutils literal notranslate"><span class="pre">M563</span> <span class="pre">S&quot;...&quot;</span></code> limit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Starts with a letter</p></td>
+<td><p>Python identifier derivation</p></td>
+</tr>
+<tr class="row-even"><td><p>At most 15 characters</p></td>
+<td><p>RepRapFirmware <code class="docutils literal notranslate"><span class="pre">M563</span> <span class="pre">S</span></code> string limit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prefix with your org tag if outside the mother repo</p></td>
+<td><p>Collision avoidance (e.g. <code class="docutils literal notranslate"><span class="pre">csl_pen</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Reserved bare names (core repo only): <code class="docutils literal notranslate"><span class="pre">inoculator</span></code>, <code class="docutils literal notranslate"><span class="pre">camera</span></code>, <code class="docutils literal notranslate"><span class="pre">light</span></code>,
+<code class="docutils literal notranslate"><span class="pre">neopixel</span></code>, <code class="docutils literal notranslate"><span class="pre">toolhead_cam</span></code>.</p>
+<p>The same <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code> appears in five places — the scaffolder handles all
+of them consistently:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Where</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code> class attribute</p></td>
+<td><p>exact key</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;csl_fluo&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Entry-point name in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p></td>
+<td><p>exact key</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">csl_fluo</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Duet <code class="docutils literal notranslate"><span class="pre">M563</span> <span class="pre">S&quot;...&quot;</span></code></p></td>
+<td><p>exact key</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">M563</span> <span class="pre">P2</span> <span class="pre">S&quot;csl_fluo&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Python package (import)</p></td>
+<td><p>key with <code class="docutils literal notranslate"><span class="pre">_</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">csl_fluo_tool</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Distribution (pip / PyPI)</p></td>
+<td><p>key with <code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">csl-fluo-tool</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="step-4-repo-layout">
+<h2>Step 4 — Repo layout<a class="headerlink" href="#step-4-repo-layout" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>csl-fluo-tool/                        # distribution name (dashes)
+├── pyproject.toml
+├── README.md
+├── templates/
+│   ├── tpre0.g                       # zeroed firmware macros
+│   ├── tpost0.g                      # overwritten by user's calibration
+│   └── tfree0.g
+├── calibration/
+│   ├── SetToolParkingPositions.ipynb
+│   └── ToolAlignmentXY.ipynb
+├── src/
+│   └── csl_fluo_tool/                # package name (underscores + _tool)
+│       ├── __init__.py
+│       ├── tool.py                   # hardware Tool subclass
+│       ├── mock.py                   # mock subclass
+│       ├── configs/
+│       │   └── csl_fluo.json
+│       └── twin_assets/              # .stl / .blend / .step files
+└── tests/
+    └── test_tool.py
+</pre></div>
+</div>
+</section>
+<section id="step-5-entry-points">
+<h2>Step 5 — Entry points<a class="headerlink" href="#step-5-entry-points" title="Link to this heading"></a></h2>
+<p>Four entry-point groups. The last two (<code class="docutils literal notranslate"><span class="pre">configs</span></code>, <code class="docutils literal notranslate"><span class="pre">twin_assets</span></code>) are
+optional — declare only what you actually ship.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.entry-points.</span><span class="s2">"science_jubilee.tools"</span><span class="k">]</span>
+<span class="n">csl_fluo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"csl_fluo_tool.tool:FluoTool"</span>
+
+<span class="k">[project.entry-points.</span><span class="s2">"science_jubilee.tools.mocks"</span><span class="k">]</span>
+<span class="n">csl_fluo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"csl_fluo_tool.mock:FluoToolMock"</span>
+
+<span class="k">[project.entry-points.</span><span class="s2">"science_jubilee.tools.configs"</span><span class="k">]</span>
+<span class="n">csl_fluo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"csl_fluo_tool.configs:__path__"</span>
+
+<span class="k">[project.entry-points.</span><span class="s2">"science_jubilee.tools.twin_assets"</span><span class="k">]</span>
+<span class="n">csl_fluo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"csl_fluo_tool.twin_assets:__path__"</span>
+</pre></div>
+</div>
+<p>The entry-point name must exactly match <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code>. Mismatch → the
+registry raises <code class="docutils literal notranslate"><span class="pre">ToolConfigurationError</span></code> at startup.</p>
+</section>
+<section id="step-6-the-tool-subclass">
+<h2>Step 6 — The <code class="docutils literal notranslate"><span class="pre">Tool</span></code> subclass<a class="headerlink" href="#step-6-the-tool-subclass" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># src/csl_fluo_tool/tool.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClassVar</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">science_jubilee.tools.Tool</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span><span class="p">,</span> <span class="n">requires_active_tool</span>
+
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FluoTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
+    <span class="n">TOOL_KEY</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"csl_fluo"</span>
+    <span class="n">exposure_ms</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span>
+
+    <span class="nd">@requires_active_tool</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">capture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nav</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Trigger fluorescence capture at the current position."""</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">&#64;dataclass(slots=True,</span> <span class="pre">repr=False)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code> is a <code class="docutils literal notranslate"><span class="pre">ClassVar[str]</span></code> matching the entry-point name</p></li>
+<li><p>Gate hardware calls with <code class="docutils literal notranslate"><span class="pre">&#64;requires_active_tool</span></code> (fails fast if the
+wrong tool is active)</p></li>
+<li><p>The mock subclass inherits from your tool class and only overrides
+the I/O methods</p></li>
+</ul>
+</section>
+<section id="step-7-duet-firmware-setup-per-machine-not-per-plugin">
+<h2>Step 7 — Duet firmware setup (per-machine, not per-plugin)<a class="headerlink" href="#step-7-duet-firmware-setup-per-machine-not-per-plugin" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">tpre&lt;N&gt;.g</span></code>, <code class="docutils literal notranslate"><span class="pre">tpost&lt;N&gt;.g</span></code>, <code class="docutils literal notranslate"><span class="pre">tfree&lt;N&gt;.g</span></code> on the Duet SD card are
+<strong>machine-calibrated</strong> — they contain the exact parking-post
+coordinates on <em>that</em> specific machine. They are generated by the
+calibration notebooks in Step 8; your plugin ships zeroed templates in
+<code class="docutils literal notranslate"><span class="pre">templates/</span></code>.</p>
+<p>The only Duet-side steps for a new tool are:</p>
+<ol class="arabic simple">
+<li><p>One <code class="docutils literal notranslate"><span class="pre">M563</span> <span class="pre">P&lt;N&gt;</span> <span class="pre">S&quot;&lt;TOOL_KEY&gt;&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">config.g</span></code> — declares the tool number</p></li>
+<li><p>One line in <code class="docutils literal notranslate"><span class="pre">toffsets.g</span></code> — the tool’s XYZ offset (produced by <code class="docutils literal notranslate"><span class="pre">ToolAlignmentXY.ipynb</span></code>, see Step 8)</p></li>
+</ol>
+<p>Both happen once, on each user’s machine.</p>
+</section>
+<section id="step-8-calibrate-on-the-machine">
+<h2>Step 8 — Calibrate on the machine<a class="headerlink" href="#step-8-calibrate-on-the-machine" title="Link to this heading"></a></h2>
+<p>Two notebooks live in the plugin’s <code class="docutils literal notranslate"><span class="pre">calibration/</span></code> folder. Both must be
+run on the target machine after the tool is physically installed and
+<code class="docutils literal notranslate"><span class="pre">M563</span></code> is declared in <code class="docutils literal notranslate"><span class="pre">config.g</span></code>.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SetToolParkingPositions.ipynb</span></code></strong> — jog to each parking post and
+record the (X, Y) of the ball-lock positions. Fills in <code class="docutils literal notranslate"><span class="pre">tpre&lt;N&gt;.g</span></code> /
+<code class="docutils literal notranslate"><span class="pre">tpost&lt;N&gt;.g</span></code> / <code class="docutils literal notranslate"><span class="pre">tfree&lt;N&gt;.g</span></code> from the zeroed templates and copies them
+to the Duet’s SD card.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ToolAlignmentXY.ipynb</span></code></strong> — with the tool active, use a reference
+point (e.g. a masking-tape cross under the toolhead camera) to find
+the tool’s active point relative to the machine origin. Writes one
+line into <code class="docutils literal notranslate"><span class="pre">toffsets.g</span></code>.</p></li>
+</ul>
+<p>The plugin doesn’t ship the <em>results</em> of either notebook — they’re
+per-machine. Users re-run them if the tool is re-mounted or the
+parking post moves.</p>
+</section>
+<section id="step-9-digital-twin-blend-asset">
+<h2>Step 9 — Digital-twin <code class="docutils literal notranslate"><span class="pre">.blend</span></code> asset<a class="headerlink" href="#step-9-digital-twin-blend-asset" title="Link to this heading"></a></h2>
+<p>The Blender twin needs a <code class="docutils literal notranslate"><span class="pre">.blend</span></code> file placed in
+<code class="docutils literal notranslate"><span class="pre">src/&lt;pkg&gt;/twin_assets/&lt;TOOL_KEY&gt;.blend</span></code>. Prepare it carefully — the
+twin uses this file’s local origin and hierarchy to position the tool
+in the virtual scene.</p>
+<ol class="arabic simple">
+<li><p><strong>Model the full tool.</strong> Include the wedge plate, both tool wings,
+and everything the toolchanger sees. The twin snaps the wedge plate
+to the carriage; if you omit it, the tool floats.</p></li>
+<li><p><strong>Align against the reference wedge plate.</strong> Open the reference
+<code class="docutils literal notranslate"><span class="pre">wedge_plate.blend</span></code> (shipped with <code class="docutils literal notranslate"><span class="pre">jubilee-blender-twin</span></code>, or grab
+the file linked in your reference implementation). Import your
+tool into that scene and manually align its wedge plate to the
+reference wedge plate — same position, same orientation. This is
+the alignment the twin will replicate on every session.</p></li>
+<li><p><strong>Clean the parenting.</strong> Before shipping, unparent everything (Alt +
+P → <em>Clear and Keep Transformation</em>). Meshes must have no parent
+set from the modelling phase; otherwise the twin’s re-parenting to
+the machine Empty will inherit a transform you don’t want.</p></li>
+<li><p><strong>Parent the whole tool to a single Empty.</strong> Add an Empty at the
+origin (which — because of step 2 — coincides with the wedge-plate
+reference). Select every mesh in the tool, then shift-select the
+Empty last, then Ctrl + P → <em>Object (Keep Transform)</em>. The Empty
+becomes the only object the twin needs to move; every mesh follows.</p></li>
+<li><p><strong>Save as <code class="docutils literal notranslate"><span class="pre">&lt;TOOL_KEY&gt;.blend</span></code>.</strong> The filename must match your
+<code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code> for auto-discovery to work.</p></li>
+</ol>
+<p>If any of these steps is skipped, the tool will appear misplaced in
+the twin, drift when the machine moves, or fail to load at all.</p>
+</section>
+<section id="reference-implementations">
+<h2>Reference implementations<a class="headerlink" href="#reference-implementations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Jubilee-CSL/tool-pen-maag"><code class="docutils literal notranslate"><span class="pre">tool-pen-maag</span></code></a> — pen tool</p></li>
+<li><p><a class="reference external" href="https://github.com/Jubilee-CSL/tool-fluo-csl"><code class="docutils literal notranslate"><span class="pre">tool-fluo-csl</span></code></a> — fluorescence imager</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../development/plugins.html"><span class="std std-doc">Choosing the right plugin type</span></a> — decision tree across all plugin types</p></li>
+<li><p><a class="reference internal" href="../reference/entry_points.html"><span class="std std-doc">Plugin discovery (entry points)</span></a> — full table</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../building/jubilee_travel.html" class="btn btn-neutral float-left" title="Traveling with Jubilee" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../development/index.html" class="btn btn-neutral float-right" title="Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Machine Agency.
+      <span class="lastupdated">Last updated on Sep 05, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

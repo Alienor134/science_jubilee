@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pipette Tool &mdash; Science Jubilee 0.0.post1.dev1+gf2e106aa6.d20260905 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="../_static/logo.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=ee6133ab"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Inoculation Loop Tool" href="inoculation_tool.html" />
+    <link rel="prev" title="Building Science Jubilee Tools" href="building_tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Science Jubilee
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html">Installing science-jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/first_session.html">Your first session</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#mock-session">Mock session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#homing-and-moving">Homing and moving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#picking-up-a-tool">Picking up a tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#navigating-to-a-labware-well">Navigating to a labware well</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#cleanup">Cleanup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/first_session.html#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/env_files.html">Configuring science-jubilee with .env files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-mock-offline-development"><code class="docutils literal notranslate"><span class="pre">.env.mock</span></code> — offline development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#env-hardware-connected-machine"><code class="docutils literal notranslate"><span class="pre">.env.hardware</span></code> — connected machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/env_files.html#full-variable-reference">Full variable reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/primer.html">G-code, coordinates, and tool changing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#gcode">GCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/primer.html#coordinate-system">Coordinate System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#absolute-and-relative-positioning">Absolute and Relative Positioning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/primer.html#toolchanging">Toolchanging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/new_user_guide.html">End-to-end setup for a new lab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#what-is-jubilee">What is Jubilee?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#where-to-find-help">Where to find help?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware">Hardware:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#software">Software:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#tools">Tools:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#things-to-be-aware-of-if-you-are-new-to-motion-platforms">0. Things to be aware of if you are new to motion platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#assemble-and-configure-the-motion-platform">1. Assemble and configure the motion platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#hardware-assembly">Hardware assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#wiring">Wiring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#board-provisioning-and-initial-connection">Board provisioning and initial connection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#build-and-install-the-tools-you-will-be-using">2. Build and install the tools you will be using</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-pipette">Building the pipette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#building-the-camera-tool">Building the camera tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/new_user_guide.html#setting-tool-parking-post-positions-and-offsets">Setting tool parking post positions and offsets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#install-and-calibrate-the-lab-automation-deck-plate">3. Install and calibrate the lab automation deck plate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/new_user_guide.html#run-your-first-experiment-script">4. Run your first experiment script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">User Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../users/writing_experiments.html">Writing an experiment script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#freenavigator-jogging-and-setup"><code class="docutils literal notranslate"><span class="pre">FreeNavigator</span></code> — jogging and setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#decknavigator-labware-aware-experiments"><code class="docutils literal notranslate"><span class="pre">DeckNavigator</span></code> — labware-aware experiments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#recording-labelled-steps-in-the-run-report">Recording labelled steps in the run report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/writing_experiments.html#where-deck-definitions-come-from">Where deck definitions come from</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/environment_reference.html">Every environment variable, explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#transport">Transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#experiment-layout">Experiment layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#attached-peripherals">Attached peripherals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#twin-downstream-tools">Twin &amp; downstream tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/environment_reference.html#resolution-order">Resolution order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/troubleshooting.html">Common errors and how to fix them</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#valueerror-jubilee-address-must-be-set-when-jubilee-transport-hardware"><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">JUBILEE_ADDRESS</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">set</span> <span class="pre">...</span> <span class="pre">when</span> <span class="pre">JUBILEE_TRANSPORT=hardware</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-session-hangs-for-15-s-on-startup">The session hangs for ~15 s on startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#mock-mode-uses-a-stale-tool-table">Mock mode uses a stale tool table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#import-fails-with-modulenotfounderror-no-module-named-neopixel-or-similar">Import fails with <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'neopixel'</span></code> (or similar)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-trace-html-doesnt-appear">The trace HTML doesn’t appear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-digital-twin-cant-find-my-tool">The digital twin can’t find my tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../users/troubleshooting.html#the-build-fails-with-relative-import-with-too-many-levels-1-for-module-http">The build fails with <code class="docutils literal notranslate"><span class="pre">Relative</span> <span class="pre">import</span> <span class="pre">with</span> <span class="pre">too</span> <span class="pre">many</span> <span class="pre">levels</span> <span class="pre">(1)</span> <span class="pre">for</span> <span class="pre">module</span> <span class="pre">'http'</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Build Guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="building_a_jubilee.html">Science Jubilee Build Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#recommended-upgrades">Recommended upgrades</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#tools">Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#to-buy">To Buy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#already-included-in-kit">Already included in kit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#assembly-instructions">Assembly Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="heatset_inserts.html">Heatset Insert Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corner_brackets.html">Inside Corner Bracket Prep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="outer_frame.html">Outer Frame Assembly and Alignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motor_plate.html">Aluminum Motor Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corner_plate.html">Double Pulley Corner Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crossbar.html">Aluminum Crossbar Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="REL.html">Toolchanger Remote Elastic Lock Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolchanger_carriage.html">Toolchanger Carriage Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_plate.html">Magnetic Build Plate Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="panel.html">Duet Electronics Panel Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lower_frame.html">Lower Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corexy.html">CoreXY Frame Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="z_axis.html">Z Axis Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_crash_detection.html">Science Jubilee Tool Crash Detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_a_jubilee.html#videos">Videos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#additional-jubilee-resources">Additional Jubilee Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_a_jubilee.html#footnotes">Footnotes</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="building_tools.html">Building Science Jubilee Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-prerequisites">Tool Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#parking-post">Parking Post</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#tool-wings">Tool Wings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#tool-plate">Tool Plate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#fabricating-a-tool">Fabricating a Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#cable-management">Cable Management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#tool-gallery">Tool Gallery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#pipette-tool">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#inoculation-loop-tool">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#top-down-camera-tool">Top-Down Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#side-camera-tool">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#syringe-tool">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="building_tools.html#lab-automation-deck">Lab Automation Deck</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#designing-custom-tools">Designing Custom Tools</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="building_tools.html#tool-postrequisites">Tool Postrequisites</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Pipette Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inoculation_tool.html">Inoculation Loop Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="top_down_camera_tool.html">Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="side_camera_tool.html">Side Camera Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="syringe_tool.html">Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_syringe.html">Digital Pipette HTTP Syringe Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lab_automation_deck.html">Lab Automation Deck</a></li>
+<li class="toctree-l4"><a class="reference internal" href="designing_custom_tools.html">Designing Custom Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_postreqs.html">Tool Postrequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_tools.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jubilee_travel.html">Traveling with Jubilee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#export-control">Export Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#customs">Customs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jubilee_travel.html#packing-and-transport">Packing and transport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jubilee_travel.html#products">Products</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="jubilee_travel.html#jubilee-in-assembled-state-untested">Jubilee in assembled state (untested)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="jubilee_travel.html#jubilee-in-height-reduced-state">Jubilee in height-reduced state</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisite_knowledge.html">Prerequisite Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../new_tool/index.html">Design a new tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-1-hardware">Step 1 — Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-2-scaffold-the-plugin">Step 2 — Scaffold the plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-3-naming-the-tool-key">Step 3 — Naming: the <code class="docutils literal notranslate"><span class="pre">TOOL_KEY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-4-repo-layout">Step 4 — Repo layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-5-entry-points">Step 5 — Entry points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-6-the-tool-subclass">Step 6 — The <code class="docutils literal notranslate"><span class="pre">Tool</span></code> subclass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-7-duet-firmware-setup-per-machine-not-per-plugin">Step 7 — Duet firmware setup (per-machine, not per-plugin)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-8-calibrate-on-the-machine">Step 8 — Calibrate on the machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#step-9-digital-twin-blend-asset">Step 9 — Digital-twin <code class="docutils literal notranslate"><span class="pre">.blend</span></code> asset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#reference-implementations">Reference implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../new_tool/index.html#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_code.html">Code Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#issues">Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_code.html#working-on-the-science-jubilee-codebase">Working on the <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code> Codebase</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#forking-the-codebase">Forking the Codebase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_code.html#git-workflow">Git Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing_docs.html">Documentation Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/contributing_docs.html#documentation-overview">Documentation Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#building-the-docs">Building the Docs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-new-pages">Adding New Pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-inline-documentation">Adding Inline Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../development/contributing_docs.html#adding-notebooks">Adding Notebooks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/plugins.html">Choosing the right plugin type</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#decision-tree">Decision tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#the-common-pattern">The common pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#which-entry-points-does-core-actually-consume">Which entry points does core actually consume?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#naming-rules">Naming rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#version-discipline">Version discipline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/plugins.html#what-lives-where">What lives where</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/labware_plugin.html">Labware plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#required-entry-points">Required entry points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#naming-convention">Naming convention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/labware_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/deck_plugin.html">Deck plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#file-tree">File tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#required-entry-point">Required entry point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#deck-json-schema-summary">Deck JSON schema (summary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/deck_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../development/digital_twin_plugin.html">Digital-twin plugin — requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#three-levels">Three levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#file-tree-level-3">File tree (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#required-entry-point-level-3">Required entry point (level 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/digital_twin_plugin.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/entry_points.html">Plugin discovery (entry points)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#table">Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#names-within-each-group">Names within each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#ecosystem-publishers-today">Ecosystem publishers today</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/entry_points.html#adding-your-own">Adding your own</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/machine_state.html">Machine state and snapshots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#signature">Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#fallback-chain">Fallback chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#the-snapshot-machine-json">The snapshot: <code class="docutils literal notranslate"><span class="pre">machine.json</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#pipeline-data-layout">Pipeline data layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/machine_state.html#reading-it-yourself">Reading it yourself</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/trace.html">Session trace (HTML recap)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#where-it-lives">Where it lives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#whats-in-a-trace">What’s in a trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#standard-sections-written-by-science-jubilee">Standard sections written by <code class="docutils literal notranslate"><span class="pre">science-jubilee</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#adding-to-a-trace-from-user-code">Adding to a trace from user code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#log-capture">Log capture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/trace.html#threading">Threading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Science Jubilee</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Build Guides</a></li>
+          <li class="breadcrumb-item"><a href="building_tools.html">Building Science Jubilee Tools</a></li>
+      <li class="breadcrumb-item active">Pipette Tool</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/building/pipette_tool.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="building_tools.html" class="btn btn-neutral float-left" title="Building Science Jubilee Tools" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inoculation_tool.html" class="btn btn-neutral float-right" title="Inoculation Loop Tool" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="pipette-tool">
+<span id="id1"></span><h1>Pipette Tool<a class="headerlink" href="#pipette-tool" title="Link to this heading"></a></h1>
+<p>The pipette tool mounts an <a class="reference external" href="https://opentrons.com/products/single-channel-electronic-pipette-p20">Opentrons OT2 pipette</a> to Jubilee to perform liquid handling with disposable pipette tips. Opentrons OT2 pipettes are available in three volume ranges (up to 20 uL, up to 300 uL, and up to 1000 uL) and have a form factor that is amenable to integrating with Jubilee. Many automation-focused labs already have an OT2 and hence OT2 pipettes. This tool provides a way to repurpose them on Jubilee. Compared to syringe-based liquid handling tools, these pipettes avoid the possibility of sample cross contamination and provides options for greater accuracy and precision at low transfer volumes. The tool consists of a mounting bracket to attach the pipette to a tool changer plate, a flexure mechanism that enables pipette tip pickups, and a wiring harness to control the pipette’s internal motor. We have been able to reproduce the accuracy and precision values <a class="reference external" href="https://opentrons.com.cn/wp-content/uploads/2023/11/Opentrons-Pipettes-White-Paper.pdf">published by Opentrons</a> for their pipettes after performing a gravimetric calibration. Choose the OT2 pipette tool if you need disposable pipette tips for your workflow or you need the pipette’s accuracy at low volumes. Consider other liquid handling tools if the cost of the pipette is prohibitive, you need access to a wider range of volumes, or you are purchasing pipettes from scratch. While this is an effective pipette tool, due to the high cost and limited feature set of OT2 pipettes we don’t recommend that new users purchase them specifically for working with Jubilee. New users should consider a syringe based tool as a starting point. If you do need a true disposable tip pipette, the <a class="reference external" href="https://www.openlabautomata.xyz/">Open Lab Automata project</a> is developing an open hardware option - keep an eye on them for progress updates. We also are considering alternative commercial solutions and are happy to discuss these more if they are of interest to you.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Using an OT2 pipette on Jubilee is obviously outside the design and support scope of Opentrons, so do so at your own risk. The Jubilee project further does not guarantee the safety or reliability of the OT2 piptte tool adaptation (or any other component of the Jubilee platform). There is a risk of destroying a pipette with an incorrectly configured machine (ask me how I know this…) so move slow and verify everything is set up correctly.</p>
+</div>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/pipette-flexure.jpg"><img alt="../_images/pipette-flexure.jpg" height="426" src="../_images/pipette-flexure.jpg" width="851" />
+</a>
+<figcaption>
+<p><span class="caption-text">Back of the pipette tool showing the flexure mechanism. When the pipette experiences resistance (i.e., pressing it against a pipette tip to pick it up), the flexure mechanism compresses until an endstop is triggered.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/pickup.gif"><img alt="../_images/pickup.gif" height="431" src="../_images/pickup.gif" width="431" />
+</a>
+<figcaption>
+<p><span class="caption-text">Pipette tool picking up a tip. When the flexure mechanism shown above reaches the endstop, the pipette tool considers the tip to have been picked up and resumes other tasks.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="tool-versions">
+<h2>Tool versions<a class="headerlink" href="#tool-versions" title="Link to this heading"></a></h2>
+<p>There are two versions of the Jubilee pipette tool. One uses a flexure that is laser cut from Delrin. The other uses a 3D printed flexure mechanism. The laser-cut Delrin flexure can be purchased from SendCutSend for around $10 USD. It is cleaner and simpler to assemble, so we recommend using this version. If you can’t procure or fabricate the laser cut flexure piece, the 3D printed version works great too!</p>
+</section>
+<section id="skills-and-capabilities-needed">
+<h2>Skills and capabilities needed<a class="headerlink" href="#skills-and-capabilities-needed" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>3D printing</p></li>
+<li><p>Soldering</p></li>
+</ul>
+</section>
+<section id="parts-to-buy">
+<h2>Parts to Buy<a class="headerlink" href="#parts-to-buy" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>OT-2 Pipette (tested with gen1 and gen2)</p></li>
+<li><p>Tipracks for your OT2 pipette</p></li>
+<li><p>See the shopping list for tool parts <a class="reference external" href="https://docs.google.com/spreadsheets/d/1Bp4ZdpHsX01EHIsc5mqbzi92CpQlax4KNS-QtPmUZUM/edit#gid=1582949094">here</a>.</p>
+<ul>
+<li><p>Corrections:
+- Add 10-pin ribbon cable: 28AWG, 10 conductor ribbon cable, 7.5 feet, digikey option: <a class="reference external" href="https://www.digikey.com/en/products/detail/assmann-wsw-components/AWG28-10-G-1-300/21997415">https://www.digikey.com/en/products/detail/assmann-wsw-components/AWG28-10-G-1-300/21997415</a>
+- Add FC-10P connector for ribbon cable, one option: <a class="reference external" href="https://www.amazon.com/Antrader-FC-10P-2-54mm-Connector-50-Pack/dp/B07DVZBQ67?th=1">https://www.amazon.com/Antrader-FC-10P-2-54mm-Connector-50-Pack/dp/B07DVZBQ67?th=1</a>
+- Add 1/2in cable sleeve: <a class="reference external" href="https://www.amazon.com/Keco-100ft-Expandable-Braided-Sleeving/dp/B07K1XJNJN/ref=sr_1_10?crid=3PYOZ19GJFUXA&amp;dib=eyJ2IjoiMSJ9.5CSsgeWmvO7VHn5FTz1tkMUth9Jvols3h8BDPqynXi2vm2_xcC6zEWUeoUwPqdaSfF2SQ6M5RmD6xeVeNz__tOWAP_qH6D26BtBo1i_vnrLg_ZlktzW4mR1FPZLfwjbpNgQhLkotDcup90P8qi43fyXAirzu_7Egcxttwacw57bRCuXWXs7jlRSKm0vubLLGiOzH704gADBpSGHGL2hqNP0y4_gN4IgAzaoo-yOfFIz4J634VOnOOINLubbSm5Zn1AZcg_CmdLxrRqjRqHoqi8_joils3HdSwdNobSQIbLQ.G2PCs4fmd-_s7oQNYSGAi_AhF_mQsUXrQ9i6m1V8Gy0&amp;dib_tag=se&amp;keywords=cable%2Bsleeve&amp;qid=1724264681&amp;s=electronics&amp;sprefix=cable%2Bslee%2Celectronics%2C139&amp;sr=1-10&amp;th=1">https://www.amazon.com/Keco-100ft-Expandable-Braided-Sleeving/dp/B07K1XJNJN/ref=sr_1_10?crid=3PYOZ19GJFUXA&amp;dib=eyJ2IjoiMSJ9.5CSsgeWmvO7VHn5FTz1tkMUth9Jvols3h8BDPqynXi2vm2_xcC6zEWUeoUwPqdaSfF2SQ6M5RmD6xeVeNz__tOWAP_qH6D26BtBo1i_vnrLg_ZlktzW4mR1FPZLfwjbpNgQhLkotDcup90P8qi43fyXAirzu_7Egcxttwacw57bRCuXWXs7jlRSKm0vubLLGiOzH704gADBpSGHGL2hqNP0y4_gN4IgAzaoo-yOfFIz4J634VOnOOINLubbSm5Zn1AZcg_CmdLxrRqjRqHoqi8_joils3HdSwdNobSQIbLQ.G2PCs4fmd-_s7oQNYSGAi_AhF_mQsUXrQ9i6m1V8Gy0&amp;dib_tag=se&amp;keywords=cable%2Bsleeve&amp;qid=1724264681&amp;s=electronics&amp;sprefix=cable%2Bslee%2Celectronics%2C139&amp;sr=1-10&amp;th=1</a>
+- Add 22g hookup wire, something like 40 ft of it
+- Specify separate limit switch for 3D printed flexure version
+- add duet board connector housings</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="parts-to-fabricate">
+<h2>Parts to Fabricate<a class="headerlink" href="#parts-to-fabricate" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Pipette tool frame SolidWorks file and correctly sized parking posts can be found <a class="reference external" href="https://github.com/machineagency/science-jubilee/tree/main/tool_library/OT2_pipette">here</a>.</p></li>
+</ul>
+</section>
+<section id="assembly-instructions">
+<h2>Assembly Instructions<a class="headerlink" href="#assembly-instructions" title="Link to this heading"></a></h2>
+<section id="wiring-harness-assembly">
+<h3>Wiring Harness Assembly<a class="headerlink" href="#wiring-harness-assembly" title="Link to this heading"></a></h3>
+<p>You will want your wiring harness to be long enough to provide sufficient slack for tool movement when routed down the front of the jubilee, below the machine, and to the back panel. 8 feet of wire length should allow for this.</p>
+<ol class="arabic simple">
+<li><p>Solder your limit switch to sufficiently long lengths of hookup wire</p></li>
+<li><p>Cut a 7.5 foot length of 10 conductor ribbon cable</p></li>
+<li><p>Attach an FC-10 connector to one end of the ribbon cable so that the ‘notch’ on the connector is to the left and the red cable insulation is towards to bottom when viewed from above. Attach the connector by pressing down on the housing so the teeth bite into the insulation, using pliers as necessary.</p></li>
+</ol>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/ribbon_cable_attachment.png"><img alt="../_images/ribbon_cable_attachment.png" height="262" src="../_images/ribbon_cable_attachment.png" width="286" />
+</a>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Cut a length of PET cable sleeve that is about 6 inches shorter than your wires. Use a hot knife to cut this if you have one, or use scissors then melt the edges with a lighter or other heat source to minimize fraying.</p></li>
+<li><p>Run your ribbon cable and limit switch wires through the cable sleeve. Make sure the limit switch and FC-10P connector are on the same side of the cable. Cover the ends of the PET housing with heat shrink tubing.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use electrical tape to tape the loose ends of the wires together to make routing them through the sleeve easier, then use a pinching motion to feed the wires through</p>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Add 22 awg extensions to the free end of the ribbon cable. This is necessary to allow attachment of connector crimps. The following instructions assume you are using blue, red, green and black hookup wire. You can use whatever color wire you have/want but do make sure to keep track of the order. Make these attachements by soldering and cover each connection with a piece of heat shrink.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ribbon cable position</p></th>
+<th class="head"><p>Hook-up wire</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Red - limit switch</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Black - limit switch</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Blue - stepper motor</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Red  - stepper motor</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Black - stepper motor</p></td>
+</tr>
+<tr class="row-odd"><td><p>1 (red insulation)</p></td>
+<td><p>Green - stepper motor</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/ribbon_to_hookup_wiring.png"><img alt="../_images/ribbon_to_hookup_wiring.png" height="317" src="../_images/ribbon_to_hookup_wiring.png" width="1094" />
+</a>
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Terminate the 4 stepper motor hookup wires with appropriate crimps for the driver you will be using. If you are attaching the stepper motor to a driver on a duet expansion board as the rest of the instructions will do, use a VH crimp. See <a class="reference internal" href="prerequisite_knowledge.html"><span class="std std-doc">prerequisite knowledge</span></a> for more on this.</p></li>
+<li><p>Terminate the 4 limit switch wires (2 for the external limit switch and two for the internal limit switch) with molex KK254 connectors.</p></li>
+<li><p>Place the terminated stepper motor wires in a JST VH 4 pin housing. When viewed from the contact side of the connector with the wires entering from the left, the order from top to bottom should be (in terms of color/ribbon cable position): [Blue/4, Red/3, Green/1, Black/2].</p></li>
+</ol>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/stepper_housing_order.png"><img alt="../_images/stepper_housing_order.png" height="189" src="../_images/stepper_housing_order.png" width="250" />
+</a>
+</figure>
+<ol class="arabic simple" start="9">
+<li><p>Place the terminated limit switch wires into a molex 5-pin housing, in positions 2 and 3.</p></li>
+</ol>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/limit_switch_order.png"><img alt="../_images/limit_switch_order.png" height="167" src="../_images/limit_switch_order.png" width="158" />
+</a>
+</figure>
+</section>
+<section id="mechanical-assembly">
+<h3>Mechanical Assembly<a class="headerlink" href="#mechanical-assembly" title="Link to this heading"></a></h3>
+<p>Follow the version of the assembly instructions for the flexure design you chose:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/machineagency/science-jubilee/blob/main/tool_library/OT2_pipette/assembly_docs/OT2_Pipette_3D_only_assembly_instructions.pdf">Version using only 3D printed parts</a></p></li>
+<li><p><a class="reference external" href="https://github.com/machineagency/science-jubilee/blob/main/tool_library/OT2_pipette/assembly_docs/OT_laser_cut_assembly_instructions.pdf">Version using 3D printed parts and a laser-cut flexible delrin part</a></p></li>
+</ul>
+</section>
+<section id="wiring-connections">
+<h3>Wiring Connections<a class="headerlink" href="#wiring-connections" title="Link to this heading"></a></h3>
+<p>The following Duet configuration guidelines will assume that you wire your new pipette tool to your Jubilee as follows</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Connector</p></th>
+<th class="head"><p>Duet board position</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Stepper motor</p></td>
+<td><p>Driver 2 on expansion board 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>External (pipette tip pickup) limit switch</p></td>
+<td><p>IO2 on board 0</p></td>
+</tr>
+<tr class="row-even"><td><p>Internal (V axis) limit switch</p></td>
+<td><p>IO3 on board 0</p></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a class="reference internal" href="wiring.html"><span class="std std-doc">default wiring instructions</span></a> for illustrations.</p>
+</section>
+</section>
+<section id="duet-configuration">
+<h2>Duet Configuration<a class="headerlink" href="#duet-configuration" title="Link to this heading"></a></h2>
+<p>These lines should be added to the <code class="docutils literal notranslate"><span class="pre">config.g</span></code> on <em>your</em> machine.</p>
+<blockquote>
+<div><p>Note:</p>
+<ol class="arabic simple">
+<li><p>Anywhere you see <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>, you should remove the greater than/less than signs and replace them with the correct information based on <em>your</em> machine.</p></li>
+<li><p>Be careful where you add the g-code lines in your <code class="docutils literal notranslate"><span class="pre">config.g</span></code> file as the order in which they are defined matters! You’ll find information on where to add each one below.</p></li>
+</ol>
+<p>For more information about G-code, see the  <a class="reference external" href="https://docs.duet3d.com/en/User_manual/Reference/Gcodes">Duet G-code Documentation</a> or the <a class="reference external" href="https://reprap.org/wiki/G-code">RepRap G-code Wiki</a>.</p>
+</div></blockquote>
+<hr class="docutils" />
+<section id="set-drive-mapping">
+<h3>1. Set Drive Mapping<a class="headerlink" href="#set-drive-mapping" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M584 V&lt;your_drive_number&gt;
+</pre></div>
+</div>
+<p>This command defines a new axis for the pipette motor and tells the Duet which board driver number you’re using.
+We use the <em>V</em> axis here; however, if it is already in use on your machine, you can also use <em>W/A/B/C</em>. Each driver on the Duet boards are labeled (e.g., <code class="docutils literal notranslate"><span class="pre">driver_0</span></code>,<code class="docutils literal notranslate"><span class="pre">driver_1</span></code>, etc.). Add the driver number (<code class="docutils literal notranslate"><span class="pre">n</span></code>) here and preped it with <code class="docutils literal notranslate"><span class="pre">1.n</span></code> if you are using an expansion board.</p>
+<p>This G-code line shuold be placed the <code class="docutils literal notranslate"><span class="pre">M584</span></code> commands for your other axes in your <code class="docutils literal notranslate"><span class="pre">config.g</span></code> file. It has to come before all the other <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">codes</span></code> we’ll add next.</p>
+<blockquote>
+<div><p><strong>Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`M584 V1.2` ; pipette plugged into driver 2 on the expansion board
+`M584 V0`   ; pipette plugged into driver 0 on the main board
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="set-stepper-direction">
+<h3>2. Set Stepper Direction<a class="headerlink" href="#set-stepper-direction" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M569 P&lt;your_drive_number&gt; S0
+</pre></div>
+</div>
+<p>This command sets the stepper motor direction. The <code class="docutils literal notranslate"><span class="pre">P</span></code> field should match the M584 command above. The <code class="docutils literal notranslate"><span class="pre">S</span></code> field can be either 0 or 1.
+Add this command alongside the <code class="docutils literal notranslate"><span class="pre">M569</span></code> commands for your other motors in your configuration file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <strong>first time</strong> you home the pipette, you should check the direction that the motor is moving by removing the front plate and watching the draft shaft move.
+During a homing step, it shold move towards the <em>endstop</em>. If it is moviong in the wrong direction (i.e., downwards), <strong>manually</strong> engage the endstop (i.e., click it!) and change the <code class="docutils literal notranslate"><span class="pre">S</span></code> parameter on this line from 0 to 1. Try again and make sure the motor moves in the expected direction.</p>
+</div>
+<blockquote>
+<div><p><strong>Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`M569 P1.2 S0 `
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="set-motor-current">
+<h3>3. Set Motor Current<a class="headerlink" href="#set-motor-current" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M906 V&lt;peak_current_in_milliamps&gt;
+</pre></div>
+</div>
+<p>This commands sets the peak motor current.</p>
+<ul class="simple">
+<li><p>For <em>Gen1</em> pipettes this shuold be <strong>350</strong> mA</p></li>
+<li><p>For <em>Gen2</em> pipettes this should be <strong>500</strong> mA
+Add this command alongside the othe <code class="docutils literal notranslate"><span class="pre">M906</span></code> for the other moto5rs defined in your configuration file.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`M906 V350` ; 350mA peak current for gen1 pipette
+`M906 V500` ; 500mA peak current for gen2 pipette
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="set-steps-per-millimeter-and-step-type">
+<h3>4. Set Steps Per Millimeter and Step Type<a class="headerlink" href="#set-steps-per-millimeter-and-step-type" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M92 V&lt;steps_per_mm&gt;
+M350 V16 I1
+</pre></div>
+</div>
+<p>Set the number of steps/mm and enables <em>16x</em> microstepping with interpolation.</p>
+<ul class="simple">
+<li><p>For <em>Gen1</em> pipettes this should be <strong>48</strong></p></li>
+<li><p>For <em>Gen2</em> Pipettes this should be <strong>200</strong>
+Add these commands alongside the other <code class="docutils literal notranslate"><span class="pre">M92</span></code> and <code class="docutils literal notranslate"><span class="pre">M350</span></code> commands in your <code class="docutils literal notranslate"><span class="pre">config.g</span></code> file.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`M92 V48`    ; for a gen1 single channel pipette
+`M92 V200`   ; for a gen2 single channel pipette
+`M350 V16 I1` ; set microstepping after M92 command
+</pre></div>
+</div>
+<p>Note: do not disable microstepping prior to define the <code class="docutils literal notranslate"><span class="pre">M92</span></code> command for the pipette motor to simplify calculations as it will mess with the motor settings (not sure why)</p>
+</div></blockquote>
+</section>
+<section id="set-v-axis-motion-attribute-limits">
+<h3>5. Set V Axis Motion Attribute Limits<a class="headerlink" href="#set-v-axis-motion-attribute-limits" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M201 V800
+M203 V10000
+M566 V4000
+</pre></div>
+</div>
+<p>These commands set the max acceleration (<code class="docutils literal notranslate"><span class="pre">M201</span></code>), speed (<code class="docutils literal notranslate"><span class="pre">M203</span></code>) and jerk (`M566``) for the V axis.
+Add these command alongside the M201/203/566 commands in your configuration file.</p>
+</section>
+<section id="configure-endstop">
+<h3>6. Configure Endstop<a class="headerlink" href="#configure-endstop" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M574 V1 S1 P"^&lt;your_pin_name&gt;"
+</pre></div>
+</div>
+<p>This command configures the endstop for the <strong>internal</strong> axis limit switch. Note that the carat (“^”) should be included to enable the pullup resistor; the quotes (” “) are necessary.
+Pins are named as <code class="docutils literal notranslate"><span class="pre">&lt;board_index&gt;.&lt;pin&gt;.in</span></code>. The <em>pin</em> number can be found on your Duet board.
+Add this command alongside the other <code class="docutils literal notranslate"><span class="pre">M574</span></code> commands.</p>
+<blockquote>
+<div><p><strong>Example</strong> :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`M574 V1 S1 P"^0.io3.in"` ; pipette endstop plugged into io3 on main board
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="define-tool">
+<h3>7. Define Tool<a class="headerlink" href="#define-tool" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M563 P&lt;tool_number&gt; S”&lt;tool_name&gt;”
+</pre></div>
+</div>
+<p>This command actually defines your tool. The tool number should be set based on the other tools you already have defined, and you can name your tool whatever human-readable text you’d like to see it as in Duet Web Control. Note that, because we are using the <em>V axis</em>, we do not need to add a <code class="docutils literal notranslate"><span class="pre">D</span></code> field here (as we might for a syringe or extruder tool).</p>
+<blockquote>
+<div><p><strong>Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`M563 P1 SP300 Pipette”` ; pipette with tool index 1
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="define-pipette-tip-endstop">
+<h3>8. Define Pipette Tip Endstop<a class="headerlink" href="#define-pipette-tip-endstop" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M574 Z1 P"^&lt;your_pin_name&gt;"
+</pre></div>
+</div>
+<p>This command is to define the external endstop for picking up pipette tips.
+In this case,  it will be an enstop for the <em>Z axis</em> instead of the pipette axis (<em>V</em>). Similarly to section 6, the carat (“^”)and the quotes (” “) are necessary in thsi line as well.
+Again, pins are named as follows <code class="docutils literal notranslate"><span class="pre">&lt;board_index&gt;.&lt;pin&gt;.in</span></code>.
+Add this command alongside the other <code class="docutils literal notranslate"><span class="pre">M574</span></code> commands</p>
+<blockquote>
+<div><p><strong>Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`M574 Z1 P"^0.io2.in` ; pipette top pick up endstop plugged into io2 on main board
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="define-homing-macro">
+<h3>9. Define Homing Macro<a class="headerlink" href="#define-homing-macro" title="Link to this heading"></a></h3>
+<p>You are now done with updating your <code class="docutils literal notranslate"><span class="pre">config.g</span></code> file!
+Next, you’ll need to define the homing routing for the pipette. In the <em>Duet Web Control</em>, navigate to <em>System</em> (i.e., <em>sys/</em>), then add a <em>New File</em> and name it <code class="docutils literal notranslate"><span class="pre">homev.g</span></code>.
+Add the following content to it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>G91              ; relative moves
+G1 V-200 F800 H1 ; big, slow negative move to look for endstop
+G1 V1 F600       ; back off endstop
+G1 V-10 F600 H1  ; find endstop again, slower
+G90              ; absolute moves
+G1 V0.5 F600     ; move to a position of 0.5 to start
+</pre></div>
+</div>
+<p><strong>Remember</strong>: The <em>first time</em> you home the pipette, you should check the direction of the mototr movement and ensure the draft shaft is moving upwards towardsthe endstop. If you notice the pipette tip ejector starts to engage, then manually stop the motion by pressing the endstop twice (to account for both searches for the endstop in the homing routine), and flip the direction of the motor (see step 2.)</p>
+</section>
+<section id="add-v-homing-to-homeall-g">
+<h3>10. Add V Homing to <code class="docutils literal notranslate"><span class="pre">homeall.g</span></code><a class="headerlink" href="#add-v-homing-to-homeall-g" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">homeall.g</span></code> macro is used to home each of the machine’s configured axis at once. You can call the <code class="docutils literal notranslate"><span class="pre">homev.g</span></code> macro at the end of this file, and the pipette will home while sitting in its parking <a class="reference external" href="http://position.To">position.To</a> do so, navigate to <em>System</em> (i.e., <em>sys/</em>), open <code class="docutils literal notranslate"><span class="pre">homeall.g</span></code>, and add the following line to the end:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>M98 P"homev.g"
+</pre></div>
+</div>
+<p>You are now done and your pipette should be configured!</p>
+</section>
+</section>
+<section id="parking-post-positions-and-offsets">
+<h2>Parking post positions and offsets<a class="headerlink" href="#parking-post-positions-and-offsets" title="Link to this heading"></a></h2>
+<p>Now you are ready to power on the machine and complete the tool setup procedures.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <strong>first time</strong> you home the pipette, you must check the direction that the motor is moving by removing the front plate and watching the draft shaft move. This will happen when you home all axes on the machine, so now is the time to check this. To do this, remove the two torx screws from the top of the pipette, slide the black plastic piece up about 1/2 inch, then pull the plastic off to the front. Nothing should need to be forced to remove the front cover.
+During a homing step, it shold move towards the <em>endstop</em>. If it is moviong in the wrong direction (i.e., downwards), <strong>manually</strong> engage the endstop (i.e., click it!) and change the <code class="docutils literal notranslate"><span class="pre">S</span></code> parameter on this line from 0 to 1. Try again and make sure the motor moves in the expected direction.</p>
+</div>
+<p>Set the <a class="reference internal" href="parking_posts.html"><span class="std std-doc">parking post positions</span></a> and <a class="reference internal" href="tool_offsets.html"><span class="std std-doc">tool offset</span></a> as described elsewhere in the documentation.</p>
+</section>
+<section id="using-the-pipette-tool">
+<h2>Using the pipette tool<a class="headerlink" href="#using-the-pipette-tool" title="Link to this heading"></a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The first time you use your new pipette tool, you should test the pipette tip pickup limit switch functionality. The pipette tool relies on the triggering of an endstop to detect a pipette tip pickup and stop bed movement. An incorrectly wired or configured endstop can lead to the bed continuing to move upwards after the pipette and tip rack have made contact, potentially destroying your pipette. Test this functionality by dropping the bed substantially in z, then having the pipette move to pickup a tip. While the bed is moving up, grab the pipette and pull it up. The endstop should trigger, stopping the bed and registering a tip pickup. If the bed keeps moving, cut the power and investigate.</p>
+</div>
+<p>Link to pipette usage example notebook:</p>
+<p>To use a pipette in the science-jubilee python interface, start by setting up your Jubilee and loading labware as in the getting started notebook.</p>
+<p>Next, import the pipette tool module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">science_jubilee.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipette</span>
+</pre></div>
+</div>
+<p>Define and load the pipette tool:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">P300</span> <span class="o">=</span> <span class="n">Pipette</span><span class="o">.</span><span class="n">Pipette</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'Pipette'</span><span class="p">,</span> <span class="s1">'P300_config.json'</span><span class="p">)</span>
+<span class="n">jubilee</span><span class="o">.</span><span class="n">load_tool</span><span class="p">(</span><span class="n">P300</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add a tiprack and trash location (already loaded as labware)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">P300</span><span class="o">.</span><span class="n">add_tiprack</span><span class="p">(</span><span class="n">tiprack</span><span class="p">)</span>
+<span class="n">P300</span><span class="o">.</span><span class="n">trash</span> <span class="o">=</span> <span class="n">trash</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Pickup the tool</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jubilee</span><span class="o">.</span><span class="n">pickup_tool</span><span class="p">(</span><span class="n">P300</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use one of the pipette commands to handle liquid. Depending on the command, tip management will be handled automatically.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">volume</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># uL</span>
+<span class="n">source_location</span> <span class="o">=</span> <span class="n">stock_solutions</span><span class="p">[</span><span class="s1">'A1'</span><span class="p">]</span>
+<span class="n">well_location</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="s1">'A1'</span><span class="p">]</span>
+<span class="n">pipette</span><span class="o">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span>
+                 <span class="n">source_location</span><span class="p">,</span>
+                 <span class="n">well_location</span><span class="p">,</span>
+                 <span class="n">blowout</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                 <span class="n">new_tip</span><span class="o">=</span><span class="s1">'once'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="https://science-jubilee.readthedocs.io/en/latest/autoapi/science_jubilee/tools/Pipette/index.html">pipette API documentation</a> for more details</p>
+</section>
+<section id="media">
+<h2>Media<a class="headerlink" href="#media" title="Link to this heading"></a></h2>
+<iframe width="708.75" height="398.25" src="https://www.youtube.com/embed/meaXhH14zzY?si=4p9Iwl6hgjO9En3n" title="Assembling the 3D printed only version of the OT2 pipette" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="354.375" height="630"
+src="https://www.youtube.com/embed/pMmDV9pAfZU"
+title="Assembling tool post"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+<iframe width="354.375" height="630"
+src="https://www.youtube.com/embed/0mGqOwAkS5k"
+title="Arbor press"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+<iframe width="354.375" height="630"
+src="https://www.youtube.com/embed/F8c2MbFglJU?mute=1"
+title="First tool loaded"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="building_tools.html" class="btn btn-neutral float-left" title="Building Science Jubilee Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inoculation_tool.html" class="btn btn-neutral float-right" title="Inoculation Loop Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Machine Agency.
+      <span class="lastupdated">Last updated on Sep 05, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
