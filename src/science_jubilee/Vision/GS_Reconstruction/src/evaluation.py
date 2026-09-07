@@ -85,7 +85,7 @@ def evaluate_models(source_obj_path, target_obj_path):
     
     print("\n--- RÉSULTATS ---")
     print(f"Échelle estimée (Ground Truth)      : {size_gt:.4f}")
-    print(f"Échelle estimée (Gaussian Splatting PC)              : {size_nerf:.4f}")
+    print(f"Échelle estimée (Reconstruction)    : {size_nerf:.4f}")
     print("-" * 30)
     print(f"Fitness (taux de points superposés) : {final_icp.fitness:.4f}")
     print(f"Inlier RMSE                         : {final_icp.inlier_rmse:.6f}")
@@ -108,8 +108,8 @@ if __name__ == "__main__":
 
         if args.visualize:
             print("\nOuverture de la fenêtre 3D... (Fermez la fenêtre pour quitter)")
-            source_pcd.paint_uniform_color([0, 0, 1])        # Bleu (GT)
-            target_pcd.paint_uniform_color([1, 0.65, 0])     # Orange (NeRF aligné)
+            target_pcd.paint_uniform_color([0, 0, 1])        # Bleu (GT)
+            source_pcd.paint_uniform_color([1, 0.65, 0])     # Orange (NeRF aligné)
             
             o3d.visualization.draw_geometries(
                 [source_pcd, target_pcd],
