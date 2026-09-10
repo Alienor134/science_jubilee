@@ -21,11 +21,11 @@ for path in (SRC_ROOT, REPO_ROOT):
     if path_str not in sys.path:
         sys.path.insert(0, path_str)
 
-import filter_plants
-import meshing
-import scale
-import filter_scene
-import scale_by_cameras
+import science_jubilee.Vision.GS_Reconstruction.src.old.filter_plants as filter_plants
+import science_jubilee.Vision.GS_Reconstruction.src.old.meshing as meshing
+import science_jubilee.Vision.GS_Reconstruction.src.old.scale as scale
+import science_jubilee.Vision.GS_Reconstruction.src.old.filter_scene as filter_scene
+import science_jubilee.Vision.GS_Reconstruction.src.old.scale_by_cameras as scale_by_cameras
 from science_jubilee.tools.camera.toolheadcam import ToolheadCam
 from science_jubilee.hal.motion_driver import MotionDriver
 from science_jubilee.hal.tool_changer import ToolChanger
